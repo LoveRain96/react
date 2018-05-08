@@ -1,11 +1,9 @@
 import {ADD_TODO, CLEAR_TODO, UPDATE_TODO} from "./actions";
 
-const defaulTodos = [
-    {name:"haha", done:true},
-    {name: "test test", done: false}
-    ];
+/*dau vao la mang rong nen khi no getState no chi hieu day la mang rong
+* chu hoan toan k lay duoc cai mang maf ong fetch*/
 
-export function addTodoReducer( state = defaulTodos, action) {
+export function addTodoReducer( state = [], action) {
     if (action.type=== ADD_TODO) {
         return [...state, {name: action.todo, done: false}]
     }

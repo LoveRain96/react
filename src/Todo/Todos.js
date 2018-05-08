@@ -15,6 +15,15 @@ class Todos extends Component {
     }
 
     componentDidMount() {
+        /*cai nay no tuong tu cai fetch ben course
+        * luc ong load trang no se gan cai todos = cai mang duoi
+        * nhung khi ong thay doi no se chay cai subscribe
+        * o ben con reducer */
+
+        this.setState({todos: [
+                {name:"haha", done:true},
+                {name: "test test", done: false}
+            ]});
         store.subscribe( () => {
             this.setState({
                 todos: store.getState()

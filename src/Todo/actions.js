@@ -10,7 +10,8 @@ export function addTodo(todoName) {
 }
 
 export  function updateTodo(todoId,todoDone ) {
-    return { type : UPDATE_TODO,
+    return {
+        type : UPDATE_TODO,
         todoId : todoId,
         done : todoDone
     }
