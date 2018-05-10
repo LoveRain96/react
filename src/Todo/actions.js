@@ -1,6 +1,7 @@
 export const ADD_TODO = "addToDo";
 export const UPDATE_TODO = "updateTodo";
 export const CLEAR_TODO = "clearDone";
+export const LOAD_TODO = "loadTodo";
 
 export function addTodo(todoName) {
     return {
@@ -21,3 +22,12 @@ export  function clearDone( ) {
     return { type : CLEAR_TODO
     }
 }
+
+export  function loadTodo() {
+    return {
+        type : LOAD_TODO,
+        
+
+    }
+}
+

@@ -1,15 +1,27 @@
 import React from 'react';
-import {Collapse, Button ,Card, CardBody, Form, Label, Input} from  'reactstrap'
+import {Collapse,Card, CardBody, Form, Label, Input} from  'reactstrap'
 import {addCourse} from "./actions";
-import store from "./store";
-import axios from "axios/index";
+import { Button} from "antd";
+import {connect} from 'react-redux'
 
-export default class FormAddCourse extends React.Component {
+const mapDispatchToProps = function (dispatch) {
+    return {
+        addCourse : function (name, startDate, endDate ) {
+            dispatch(addCourse(name, startDate, endDate))
+        }
+    }
+};
+
+const mapStateToProps    = function (state) {
+    return {
+        courses: state.duclai,
+    }
+};
+
+class FormAddCourse extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            courses: [],
-            name: '',
             startDate: '',
             endDate: '',
             toggle: false,
@@ -17,14 +29,7 @@ export default class FormAddCourse extends React.Component {
     }
     handleClick(e) {
         e.preventDefault();
-        axios.post('/course',{
-            name: this.state.name,
-            startDate : this.state.startDate,
-            endDate  : this.state.endDate
-        }).then(res=> {
-            store.dispatch(addCourse(res.data));
-        })
-
+        this.props.addCourse(this.state.name, this.state.startDate, this.state.endDate)
     }
 
     nameChange(event) {
@@ -43,7 +48,7 @@ export default class FormAddCourse extends React.Component {
             <Collapse isOpen={this.props.collapse}>
                 <Card>
                     <CardBody>
-                        <Form onSubmit={this.handleClick.bind(this)}>
+                        <Form>
                             <Label>Name</Label>
                             <Input name="name" type="text" onChange={this.nameChange.bind(this)}
                                    placeholder="Enter name course"/>
@@ -52,7 +57,7 @@ export default class FormAddCourse extends React.Component {
                             <Label>End_Date</Label>
                             <Input onChange={this.endDateChange.bind(this)} name="endDate" type={"date"}/>
                             <br/>
-                            <Button>SAVE</Button>
+                            <Button onClick={this.handleClick.bind(this)}>SAVE</Button>
                         </Form>
                     </CardBody>
                 </Card>
@@ -60,3 +65,5 @@ export default class FormAddCourse extends React.Component {
         )
     }
 }
+
+export default connect(mapStateToProps,mapDispatchToProps)(FormAddCourse)

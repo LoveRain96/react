@@ -1,22 +1,35 @@
 import React from 'react';
-import store from "./store";
 import Modal from 'react-modal';
 import {
     Container,
-    Button,
 } from "reactstrap";
 import ListCourse from "./ListCourse";
 import FormAddCourse from "./FormAddCourse";
-import getCourses from "./getCourse";
-import {addCourse} from "./actions";
+import {Button} from  "antd"
+import {connect} from  'react-redux';
+import {loadCourse} from "./actions";
 
-export default class Course extends React.Component {
+const mapDispatchToProps = function (dispatch) {
+    return {
+        loadCourse : function () {
+            dispatch(loadCourse());
+        }
+    }
+};
+
+const mapStateToProps = function (state) {
+    return {
+        courses : state.addCourseReducer,
+
+    }
+};
+
+class Course extends React.Component {
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.editToggle = this.editToggle.bind(this);
         this.state = {
-            courses: store.getState(),
             name: '',
             startDate: '',
             endDate: '',
@@ -27,17 +40,16 @@ export default class Course extends React.Component {
     }
 
      componentDidMount() {
-        getCourses().then( data => {
-            data.map( data => store.dispatch(addCourse(data)));
+        /*getCourses().then( data => {
+            data.map( data => store.dispatch(addCourse(data, false)));
         });
         store.subscribe( () => {
             this.setState({ courses:  store.getState()});
-        });
+        });*/
+         this.props.loadCourse();
+         Modal.setAppElement('body');
     }
 
-    componentWillMount() {
-        Modal.setAppElement('body');
-    }
 
     editToggle() {
         this.setState({modal: !this.state.modal});
@@ -50,7 +62,7 @@ export default class Course extends React.Component {
     render() {
         return (
             <Container>
-                <ListCourse courses={this.state.courses}/>
+                <ListCourse courses={this.props.courses}/>
                 <div>
                     <Button onClick={this.toggle} style={{marginBottom: '1rem'}}>ADD</Button>
                     <FormAddCourse collapse={this.state.collapse}/>
@@ -59,3 +71,5 @@ export default class Course extends React.Component {
         )
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Course)

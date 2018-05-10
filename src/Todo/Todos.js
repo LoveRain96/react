@@ -1,58 +1,54 @@
-
 import React, { Component } from 'react';
-//import logo from './logo.svg';
 import './Todos.css';
-import store from "./store";
-import {addTodo, clearDone, updateTodo} from "./actions";
+import {addTodo, clearDone, loadTodo, updateTodo} from "./actions";
+import {connect} from 'react-redux';
+
+const mapDispatchToProps = function (dispatch) {
+    return {
+        addTodo : function (name) {
+            dispatch(addTodo(name));
+        },
+
+        updateTodo : function (id, todoDone) {
+            dispatch(updateTodo(id, todoDone));
+        },
+
+        clearDone : function () {
+            dispatch(clearDone())
+        },
+        loadTodo : () => {
+            dispatch(loadTodo())
+        }
+    }
+};
+
+const mapStateToProps = function (state) {
+    return {
+        todos : state.addTodoReducer,
+        numberOfDone : state.addTodoReducer.filter( (todo) => todo.done).length
+    }
+};
 
 class Todos extends Component {
+
     constructor(props) {
         super(props);
-        this.state = {
-            todos: store.getState()
-        };
         this.newTodo = React.createRef()
     }
 
-    componentDidMount() {
-        /*cai nay no tuong tu cai fetch ben course
-        * luc ong load trang no se gan cai todos = cai mang duoi
-        * nhung khi ong thay doi no se chay cai subscribe
-        * o ben con reducer */
-
-        this.setState({todos: [
-                {name:"haha", done:true},
-                {name: "test test", done: false}
-            ]});
-        store.subscribe( () => {
-            this.setState({
-                todos: store.getState()
-            });
-        })
-    }
-    countDone () {
-        return this.state.todos.filter( (todo) => todo.done).length
-    }
-    onClearDoneClick () {
-        store.dispatch(clearDone());
-    }
     onInputChange(e) {
         e.preventDefault();
-        store.dispatch(addTodo(this.newTodo.current.value));
+        this.props.addTodo(this.newTodo.current.value)
     }
     onChange(e) {
-        store.dispatch(updateTodo(e.currentTarget.getAttribute('todoid'), e.currentTarget.checked));
-        console.log(e.currentTarget.getAttribute('todoid'));
-
+        this.props.updateTodo(e.currentTarget.getAttribute('data-todo-id'), e.currentTarget.checked);
     }
     render() {
         return (
             <div>
-
-                <h1>{this.countDone()}/{this.state.todos.length}</h1>
                 <ul>
-                    {this.state.todos.map((todo, index) => <li className={"todo-done-"+todo.done} key={index}>{todo.name}
-                        <input type="checkbox" todoid={index} onChange={this.onChange.bind(this)} checked={todo.done}/>
+                    {this.props.todos.map((todo, index) => <li className={"todo-done-"+todo.done} key={index}>{todo.name}
+                        <input type="checkbox" data-todo-id={index} onChange={this.onChange.bind(this)} checked={todo.done}/>
                     </li>)}
                 </ul>
                 {/*{JSON.stringify(store.getState())}*/}
@@ -60,12 +56,15 @@ class Todos extends Component {
                     <input ref={this.newTodo}/>
                     <input type="submit"/>
                 </form>
-                <button onClick={this.onClearDoneClick.bind(this)}>
+                <button onClick={this.props.clearDone.bind(this)}>
                     Clear Done
                 </button>
+                <button onClick={this.props.loadTodo.bind(this)} > LOAD </button>
             </div>
         );
     }
 }
+export default connect(mapStateToProps,mapDispatchToProps)(Todos);
 
-export default Todos;
+/*
+BTVN combine Action, combine Reducer, ES7 decorator*/

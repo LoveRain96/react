@@ -1,27 +1,39 @@
-import {ADD_COURSE, DELETE_COURSE, EDIT_COURSE} from "./actions";
+import {ADD_COURSE, CHECKED_COURSE, DELETE_COURSE, DELETE_COURSE_CHECKED, EDIT_COURSE, LOAD_COURSE} from "./actions";
 
 export function addCourseReducer(state = [], action) {
     if (action.type === ADD_COURSE) {
-        return [...state, {
-            id: action.id,
-            name: action.name,
-            duration: action.duration
-        }];
+        return [...state, {...action.course}];
+    }
+
+    if (action.type === DELETE_COURSE_CHECKED) {
+        return state.filter(course => !course.checked);
+    }
+
+    if (action.type === LOAD_COURSE) {
+        return [...action.courses]
     }
 
     if (action.type === DELETE_COURSE) {
         const newCourse = [...state];
         newCourse.splice(action.key_delete, 1);
-        console.log(newCourse);
         return newCourse;
     }
 
     if (action.type === EDIT_COURSE) {
         const newCourse = [...state];
-        newCourse[action.key_edit].name = action.name;
-        newCourse[action.key_edit].startDate = action.startDate;
-        newCourse[action.key_edit].endDate = action.endDate;
-        return newCourse;
+        newCourse[action.key_edit] = action.course;
+        return [...newCourse];
+
+    }
+
+    if (action.type === CHECKED_COURSE) {
+        const newCourse = [...state,{
+            id: action.id,
+            checked : action.checked
+        }];
+        console.log(newCourse);
+        newCourse[action.id].checked = action.checked;
+        return [...newCourse];
     }
 
     return state;

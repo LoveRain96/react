@@ -1,18 +1,37 @@
 import React from 'react';
-import {Table} from 'react-bootstrap';
 import Modal from 'react-modal';
+import {connect} from 'react-redux'
 import {
     Container,
     Input,
-    Button,
     Label,
+    Table
 
 } from "reactstrap";
-import store from "./store";
+import {Button} from "antd"
 import {deleteCourse, editCourse} from "./actions";
-import axios from "axios";
 
-export default class ListCourse extends React.Component {
+const mapDispatchToProps = function (dispatch) {
+    return {
+        editCourse : function (id, name, startDate, endDate, key_edit) {
+            dispatch(editCourse(id, name, startDate, endDate, key_edit))
+        },
+
+        deleteCourse(id,key_delete) {
+            dispatch(deleteCourse(id, key_delete))
+        }
+
+    }
+};
+
+const mapStateToProps = function (state) {
+
+    return {
+        courses : state.addCourseReducer
+    }
+};
+
+class ListCourse extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,11 +41,10 @@ export default class ListCourse extends React.Component {
             endDate: '',
             toggle: false,
             modalIsOpen: false,
-            modalDeleteIsOpen: false
+            idChecked: []
 
         };
         this.openModal = this.openModal.bind(this);
-        this.openModalDelete = this.openModalDelete.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
 
@@ -38,8 +56,8 @@ export default class ListCourse extends React.Component {
         this.setState({
             modalIsOpen: true,
             name: course.name,
-            startDate: course.duration.startDate,
-            endDate: course.duration.endDate,
+            startDate: course.startDate,
+            endDate: course.endDate,
             id: course.id,
             key_edit: key
         });
@@ -51,20 +69,21 @@ export default class ListCourse extends React.Component {
         });
     }
 
-    closeModalDelete() {
-        this.setState({
-            modalDeleteIsOpen: false
-        });
+    onEdited(e) {
+        e.preventDefault();
+        this.props.editCourse(this.state.id, this.state.name, this.state.startDate, this.state.endDate, this.state.key_edit);
+        this.closeModal();
+        /*let self = this;
+        axios.put('/course/'.concat(this.state.id), {
+            name: this.state.name,
+            startDate: this.state.startDate,
+            endDate: this.state.endDate,
+            id: this.state.id
+        }).then(res => {
+            store.dispatch(editCourse(res.data, self.state.key_edit));
+            self.closeModal();
+        });*/
     }
-
-    openModalDelete(courseId, key) {
-        this.setState({
-            modalDeleteIsOpen: true,
-            id: courseId,
-            key_delete: key
-        });
-    }
-
     nameChange(event) {
         this.setState({name: event.target.value})
     }
@@ -77,32 +96,33 @@ export default class ListCourse extends React.Component {
         this.setState({endDate: event.target.value})
     }
 
-    onDeleted(e) {
-        const courseId = e.currentTarget.getAttribute('courseid');
-        const index = e.currentTarget.getAttribute('index');
-        const nameCourse = e.currentTarget.getAttribute('nameCourse');
+    onDeleted (e) {
+        const nameCourse = e.currentTarget.getAttribute('name');
+        let id = e.currentTarget.getAttribute('data-course-id');
         if (window.confirm('Do you want to delete this : '.concat(nameCourse))) {
-            axios.delete('/course/'.concat(courseId)).then(() => {
+            this.props.deleteCourse(id,this.state.key_delete)
+           /* axios.delete('/course/'.concat(courseId)).then(() => {
                 store.dispatch(deleteCourse(courseId, index));
-                this.closeModalDelete();
-            });
+                this.closeModalDelete();*/
         }
-        }
-
-    onEdited(e) {
-        e.preventDefault();
-        let self = this;
-
-        axios.put('/course/'.concat(this.state.id), {
-            name: this.state.name,
-            startDate: this.state.startDate,
-            endDate: this.state.endDate,
-            id: this.state.id
-        }).then(res => {
-            store.dispatch(editCourse(res.data, self.state.key_edit));
-            self.closeModal();
-        });
     }
+
+   /* checkedChange(e) {
+        store.dispatch(checkedCourse(e.currentTarget.getAttribute('id'), e.currentTarget.checked));
+    }
+
+    handleDelete() {
+        console.log(this.state.idChecked);
+        this.state.idChecked.map(id => {
+            if(id.checked === true) {
+                axios.delete('/course/'.concat(id.id)).then( () => {
+
+                        return store.dispatch(deleteCourseChecked(id))
+                    }
+                )}
+                return 'success'
+        });
+    }*/
 
     render() {
         return (
@@ -110,28 +130,25 @@ export default class ListCourse extends React.Component {
                 <Table>
                     <thead>
                     <tr>
-                        <td> NAME</td>
-                        <td> START_DATE</td>
-                        <td> END_DATE</td>
+                        <th> NAME</th>
+                        <th> START_DATE</th>
+                        <th> END_DATE</th>
                     </tr>
                     </thead>
                     <tbody>
                     {this.props.courses.map((course, index) =>
-                        <tr key={course.id}>
+                        <tr key={index}>
                             <td>{course.name}</td>
-                            <td>{course.duration.startDate}</td>
-                            <td>{course.duration.endDate}</td>
+                            <td>{course.startDate}</td>
+                            <td>{course.endDate}</td>
                             {/**DELETE**/}
-                            <td><Button courseid={course.id} index={index} nameCourse={course.name}
+                            <td><Button data-course-id={course.id} index={index} name={course.name}
                                         onClick={this.onDeleted.bind(this)}> Delete </Button></td>
-
 
                             {/** EDIT **/}
                             <td><Button courseid={course.id} onClick={() => this.openModal(course, index)}
-                                        style={{marginBottom: '1rem'}}>Edit</Button></td>
-                            <Modal isOpen={this.state.modalIsOpen}
-                                   onRequestClose={this.closeModal}
-                            >
+                                            style={{marginBottom: '1rem'}}>Edit</Button></td>
+                            <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal}>
                                 <Label>Name</Label>
                                 <Input name="name" type="text" value={this.state.name}
                                        onChange={this.nameChange.bind(this)}
@@ -153,3 +170,5 @@ export default class ListCourse extends React.Component {
         )
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListCourse);
