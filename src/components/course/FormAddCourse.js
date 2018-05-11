@@ -14,7 +14,7 @@ const mapDispatchToProps = function (dispatch) {
 
 const mapStateToProps    = function (state) {
     return {
-        courses: state.duclai,
+        courses: state,
     }
 };
 

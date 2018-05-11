@@ -28,7 +28,6 @@ class Course extends React.Component {
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
-        this.editToggle = this.editToggle.bind(this);
         this.state = {
             name: '',
             startDate: '',
@@ -42,11 +41,6 @@ class Course extends React.Component {
      componentDidMount() {
          this.props.loadCourse();
          Modal.setAppElement('body');
-    }
-
-
-    editToggle() {
-        this.setState({modal: !this.state.modal});
     }
 
     toggle() {
