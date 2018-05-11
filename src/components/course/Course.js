@@ -40,12 +40,6 @@ class Course extends React.Component {
     }
 
      componentDidMount() {
-        /*getCourses().then( data => {
-            data.map( data => store.dispatch(addCourse(data, false)));
-        });
-        store.subscribe( () => {
-            this.setState({ courses:  store.getState()});
-        });*/
          this.props.loadCourse();
          Modal.setAppElement('body');
     }

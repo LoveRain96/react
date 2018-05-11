@@ -7,10 +7,12 @@ import 'antd/dist/antd.css'
 import registerServiceWorker from './registerServiceWorker';
 import store from "./reducers/store";
 import {Provider} from "react-redux";
+import {BrowserRouter as Router} from "react-router-dom"
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('root'));
+    <Router>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </Router>, document.getElementById('root'));
 registerServiceWorker();

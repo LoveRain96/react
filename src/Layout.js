@@ -1,7 +1,10 @@
 import  React from 'react'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import Course from "./components/course/Course";
-const { Header, Content, Footer, Sider } = Layout;
+import FormLogin from "./components/login/fromLogin";
+
+//import {Link} from "react-router-dom";
+const { Header, Content, Footer, Sider, } = Layout;
 const SubMenu = Menu.SubMenu;
 
 export default class LayoutDemo extends React.Component {
@@ -23,7 +26,7 @@ export default class LayoutDemo extends React.Component {
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                         <Menu.Item key="1">
                             <Icon type="pie-chart" />
-                            <span>Option 1</span>
+                            <span>MANAGEMENT</span>
                         </Menu.Item>
                         <Menu.Item key="2">
                             <Icon type="desktop" />
@@ -33,7 +36,7 @@ export default class LayoutDemo extends React.Component {
                             key="sub1"
                             title={<span><Icon type="taobao"/><span>MANAGEMENT</span></span>}
                         >
-                            <Menu.Item key="3" >COURSE</Menu.Item>
+                            <Menu.Item key="3">COURSE</Menu.Item>
                             <Menu.Item key="4">COMPANY</Menu.Item>
                             <Menu.Item key="5">LECTURE</Menu.Item>
                             <Menu.Item key="6">INTERN</Menu.Item>
@@ -42,6 +45,13 @@ export default class LayoutDemo extends React.Component {
                 </Sider>
                 <Layout>
                     <Header style={{ background: '#fff', padding: 0 }} >
+                        <div>
+                        </div>
+                        <div >
+                            {/*<FormLogin/>*/}
+                            {/*<Login1/>*/}
+                            <FormLogin/>
+                        </div>
                     </Header>
                     <Content style={{ margin: '0 16px' }}>
                         <Breadcrumb style={{ margin: '16px 0' }}>

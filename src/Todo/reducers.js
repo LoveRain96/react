@@ -14,6 +14,7 @@ export function addTodoReducer(state = [{name: "test test", done: false}, {name:
     }
 
     else if (action.type === LOAD_TODO) {
+        console.log([...action.todos]);
         return [...action.todos];
     }
     else {

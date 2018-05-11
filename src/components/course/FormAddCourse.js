@@ -48,7 +48,7 @@ class FormAddCourse extends React.Component {
             <Collapse isOpen={this.props.collapse}>
                 <Card>
                     <CardBody>
-                        <Form>
+                        <Form onSubmit={this.handleClick.bind(this)}>
                             <Label>Name</Label>
                             <Input name="name" type="text" onChange={this.nameChange.bind(this)}
                                    placeholder="Enter name course"/>

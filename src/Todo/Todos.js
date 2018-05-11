@@ -25,7 +25,7 @@ const mapDispatchToProps = function (dispatch) {
 const mapStateToProps = function (state) {
     return {
         todos : state.addTodoReducer,
-        numberOfDone : state.addTodoReducer.filter( (todo) => todo.done).length
+        //numberOfDone : state.addTodoReducer.filter( (todo) => todo.done).length
     }
 };
 

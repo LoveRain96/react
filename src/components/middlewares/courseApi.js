@@ -11,7 +11,7 @@ const courseApi = store => next => action => {
         }))
     }
 
-    if (action.type === ADD_COURSE) {
+    else if (action.type === ADD_COURSE) {
         axios.post('/course',{
             name      : action.name,
             startDate : action.startDate,
@@ -23,7 +23,7 @@ const courseApi = store => next => action => {
         )
     }
 
-    if (action.type === EDIT_COURSE) {
+    else if (action.type === EDIT_COURSE) {
         let id = action.id;
         axios.put('course/'.concat(id), {
             name      : action.name,
@@ -35,13 +35,15 @@ const courseApi = store => next => action => {
             key_edit : action.key_edit
         }))
     }
-    if (action.type === DELETE_COURSE) {
+    else if (action.type === DELETE_COURSE) {
         let id = action.id;
         axios.delete('/course/'.concat(id)).then(() => next({
             type : DELETE_COURSE,
             key_delete: action.key_delete
         }))
     }
+
+    else next(action)
 };
 
 export default courseApi;

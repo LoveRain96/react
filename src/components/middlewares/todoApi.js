@@ -1,4 +1,4 @@
-import {ADD_TODO, CLEAR_TODO, LOAD_TODO, UPDATE_TODO} from "./actions";
+import {ADD_TODO, CLEAR_TODO, LOAD_TODO, UPDATE_TODO} from "../../Todo/actions";
 import axios from "axios/index";
 
 
@@ -9,19 +9,21 @@ const todoApi = store => next => action => {
             todos : res.data
         }));
     }
-    if(action.type === ADD_TODO) {
+    else if (action.type === ADD_TODO) {
      next(action)
     }
 
-    if(action.type === UPDATE_TODO) {
+    else if(action.type === UPDATE_TODO) {
         next(action)
     }
 
-    if (action.type === CLEAR_TODO) {
+     else if (action.type === CLEAR_TODO) {
         next(action)
     }
 
-    next(action);
+    else {
+        next(action);
+    }
 };
 
 export default todoApi;

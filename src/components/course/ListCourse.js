@@ -99,8 +99,10 @@ class ListCourse extends React.Component {
     onDeleted (e) {
         const nameCourse = e.currentTarget.getAttribute('name');
         let id = e.currentTarget.getAttribute('data-course-id');
+        let index =  e.currentTarget.getAttribute('index');
+        this.setState.key_delete = index;
         if (window.confirm('Do you want to delete this : '.concat(nameCourse))) {
-            this.props.deleteCourse(id,this.state.key_delete)
+            this.props.deleteCourse(id,index)
            /* axios.delete('/course/'.concat(courseId)).then(() => {
                 store.dispatch(deleteCourse(courseId, index));
                 this.closeModalDelete();*/
