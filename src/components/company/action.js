@@ -1,5 +1,7 @@
 export const LOAD_COMPANY       = "loadCompany";
 export const ADD_COMPANY        = "addCompany";
+export const EDIT_COMPANY       = "editCompany";
+export const DELETE_COMPANY     = "deleteCompany";
 
 export function loadCompany() {
     return {
@@ -13,7 +15,29 @@ export function addCompany(name, phoneManager, emailManager, address, nameManage
         name : name,
         phoneManager : phoneManager,
         emailManager : emailManager,
-        address      : address,
-        nameManager  : nameManager
+        nameManager  : nameManager,
+        address      : address
     }
+}
+
+export function editCompany(id, name, phoneManager, emailManager, nameManager, address, key ) {
+    return {
+        type : EDIT_COMPANY,
+        id : id,
+        name : name,
+        phoneManager : phoneManager,
+        emailManager : emailManager,
+        nameManager  : nameManager,
+        address      : address,
+        key_edit     : key
+    }
+}
+
+export function deleteCompany(id, key) {
+    return {
+        type : DELETE_COMPANY,
+        id   : id,
+        key_delete : key
+    }
+
 }

@@ -1,12 +1,17 @@
 import React from 'react';
 import {Collapse,Card, CardBody, Form, Label, Input} from  'reactstrap'
-import { Button} from "antd";
+import {Button} from "antd";
 import {connect} from 'react-redux'
+import {addCompany} from "./action";
+//import AddArea from "./AddArea";
 
 const mapDispatchToProps = function (dispatch) {
     return {
-
+        addCompany : function (name, phoneManager, emailManager, nameManager, address ) {
+            dispatch(addCompany(name, phoneManager, emailManager, nameManager, address))
+        }
     }
+
 };
 
 const mapStateToProps   = function (state) {
@@ -16,8 +21,8 @@ const mapStateToProps   = function (state) {
 };
 
 class FormAddCompany extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             name: '',
             phoneManager :'',
@@ -29,7 +34,9 @@ class FormAddCompany extends React.Component {
 
     handleClick(e) {
         e.preventDefault();
-        this.props.addCourse(this.state.name, this.state.startDate, this.state.endDate)
+        this.props.addCompany(this.state.name, this.state.phoneManager, this.state.emailManager,
+            this.state.nameManager, this.state.address);
+
     }
 
     nameChange(event) {
@@ -62,13 +69,13 @@ class FormAddCompany extends React.Component {
                             <Input name="name" type="text" onChange={this.nameChange.bind(this)}
                                    placeholder="Enter name company"/>
                             <Label>Phone Manager</Label>
-                            <Input onChange={this.phoneManagerChange.bind(this)} name="phoneManager" />
+                            <Input onChange={this.phoneManagerChange.bind(this)} placeholder="Enter phone manager" name="phoneManager" />
                             <Label>Email Manager</Label>
-                            <Input onChange={this.emailManagerChange.bind(this)} name="emailManager" />
+                            <Input onChange={this.emailManagerChange.bind(this)} placeholder="Enter email manager" name="emailManager" />
                             <Label>Name Manager</Label>
-                            <Input onChange={this.nameManagerChange.bind(this)} name="nameManager" />
+                            <Input onChange={this.nameManagerChange.bind(this)} placeholder="Enter name manager" name="nameManager" />
                             <Label>Address</Label>
-                            <Input onChange={this.addressChange.bind(this)} name="address"/>
+                            <Input onChange={this.addressChange.bind(this)} placeholder="Enter address" name="address"/>
                             <br/>
                             <Button onClick={this.handleClick.bind(this)}>SAVE</Button>
                         </Form>

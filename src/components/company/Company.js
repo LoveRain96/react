@@ -5,6 +5,9 @@ import Modal from "react-modal";
 import ListCompany from "./ListCompany";
 import {Container} from 'reactstrap';
 import {Button} from 'antd'
+import FormAddCompany from "./FormAddCompany";
+
+
 
 const mapDispatchToProps = function (dispatch) {
     return {
@@ -33,7 +36,6 @@ class Company extends React.Component {
         this.props.loadCompany();
         Modal.setAppElement('body');
     }
-
     toggle() {
         this.setState({collapse: !this.state.collapse});
     }
@@ -44,7 +46,7 @@ class Company extends React.Component {
                 <ListCompany companies = {this.props.companies}/>
                 <div>
                     <Button onClick={this.toggle} style={{marginBottom: '1rem'}}>ADD</Button>
-                    <FormAddCourse collapse={this.state.collapse}/>
+                    <FormAddCompany collapse={this.state.collapse}/>
                 </div>
             </Container>
         )
