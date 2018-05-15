@@ -8,9 +8,6 @@ class App extends Component {
         return(
             <div>
                 <LayoutDemo/>
-               {/* <FormLogin1/>*/}
-                {/*<Main/>*/}
-                {/*<Todos/>*/}
             </div>
         )
     }
