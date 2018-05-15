@@ -4,7 +4,15 @@ export const EDIT_COURSE            = "editCourse";
 export const CHECKED_COURSE         = 'checkCOURSE';
 export const DELETE_COURSE_CHECKED  = 'deleteCheckCOURSE';
 export const LOAD_COURSE            = 'loadCourse';
+export const ID_COURSE              = 'idCourse';
 
+
+export function idCourse(id) {
+    return {
+        type : ID_COURSE,
+        id   : id
+    }
+}
 export function addCourse(name, startDate, endDate) {
     return {
         type        : ADD_COURSE,

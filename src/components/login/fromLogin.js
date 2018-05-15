@@ -78,7 +78,7 @@ class FormLogin1 extends React.Component {
                         <div>
                             Or <a href="">register now!</a>
                         </div>
-                    </Form.Item>
+                    </Form.Item>    
                 </Form>
             </Modal>
             </div>

@@ -1,4 +1,7 @@
-import {ADD_COURSE, CHECKED_COURSE, DELETE_COURSE, DELETE_COURSE_CHECKED, EDIT_COURSE, LOAD_COURSE} from "./actions";
+import {
+    ADD_COURSE, CHECKED_COURSE, DELETE_COURSE, DELETE_COURSE_CHECKED, EDIT_COURSE, ID_COURSE,
+    LOAD_COURSE
+} from "./actions";
 
 export function addCourseReducer(state = [], action) {
     if (action.type === ADD_COURSE) {

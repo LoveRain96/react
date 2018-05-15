@@ -2,7 +2,6 @@ import React                from 'react';
 import Modal                from 'react-modal';
 import {Container, Table}   from "reactstrap";
 import {connect}            from  'react-redux';
-import {Link}               from 'react-router-dom';
 import {loadCompany} from "../company/action";
 import Breadcrumb from "antd/es/breadcrumb/Breadcrumb";
 
