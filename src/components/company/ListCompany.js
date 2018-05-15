@@ -115,6 +115,8 @@ class ListCompany extends React.Component {
                         <th> EMAIL MANAGER </th>
                         <th> NAME MANAGER </th>
                         <th> ADDRESS </th>
+                        <th> AREA </th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -126,6 +128,9 @@ class ListCompany extends React.Component {
                             <td>{company.emailManager}</td>
                             <td>{company.nameManager}</td>
                             <td>{company.address}</td>
+                            <td>
+                                {company.area.name}
+                            </td>
                             <td><Button  className={"btn-delete"} data-company-id={company.id} index={index} name={company.name}
                                         onClick={this.onDeleted.bind(this)}> Delete </Button>
                             </td>

@@ -1,7 +1,6 @@
 import  React from 'react'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import HeaderNavbav from "./HeaderNavbar";
-import Guest from "./components/Guest/Guest";
 import Router from "./components/Guest/Router";
 
 const { Header, Content, Footer, Sider} = Layout;
@@ -31,7 +30,7 @@ export default class LayoutDemo extends React.Component {
                     </Menu>
                 </Sider>
                 <Layout>
-                    <Header style={{ background: '#fff', padding: 0 }} >
+                    <Header>
                         <HeaderNavbav/>
                     </Header>
                     <Content style={{ margin: '0 16px' }}>

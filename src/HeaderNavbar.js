@@ -7,7 +7,7 @@ const Search = Input.Search;
 export default class HeaderNavbar extends React.Component {
     render() {
         return (
-            <div>
+            <Header style={{ background: '#fff', padding: 0 }} >
                 <div className="logo"/>
                 <Menu
                     theme="white"
@@ -27,7 +27,7 @@ export default class HeaderNavbar extends React.Component {
                     <Menu.Item key="4">CONTACT</Menu.Item>
                     <Menu.Item key="5">LOGIN</Menu.Item>
                 </Menu>
-            </div>
+            </Header>
         )
     }
 
