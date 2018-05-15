@@ -1,7 +1,6 @@
 import  React from 'react'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import HeaderNavbav from "./HeaderNavbar";
-import Guest from "./components/Guest/Guest";
 import Router from "./components/Guest/Router";
 
 const { Header, Content, Footer, Sider} = Layout;
