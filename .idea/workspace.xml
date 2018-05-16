@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/Layout.js" afterPath="$PROJECT_DIR$/src/Layout.js" />
       <change beforePath="$PROJECT_DIR$/src/components/Guest/InternshipList.js" afterPath="$PROJECT_DIR$/src/components/Guest/InternshipList.js" />
-      <change beforePath="$PROJECT_DIR$/src/router/RouterGuest.js" afterPath="$PROJECT_DIR$/src/router/RouterGuest.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -39,21 +38,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InternshipList.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="InternshipList.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Guest/InternshipList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="59">
-              <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+            <state relative-caret-position="336">
+              <caret line="27" column="60" lean-forward="true" selection-start-line="27" selection-start-column="60" selection-end-line="27" selection-end-column="60" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Layout.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Layout.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Layout.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="87" column="39" lean-forward="false" selection-start-line="87" selection-start-column="39" selection-end-line="87" selection-end-column="39" />
+            <state relative-caret-position="241">
+              <caret line="48" column="7" lean-forward="true" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -149,9 +148,9 @@
         <option value="$PROJECT_DIR$/src/components/company/area/Area.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/components/Guest/CourseList.js" />
-        <option value="$PROJECT_DIR$/src/Layout.js" />
         <option value="$PROJECT_DIR$/src/router/RouterGuest.js" />
         <option value="$PROJECT_DIR$/src/components/Guest/InternshipList.js" />
+        <option value="$PROJECT_DIR$/src/Layout.js" />
       </list>
     </option>
   </component>
@@ -334,16 +333,15 @@
       <workItem from="1526357047420" duration="20212000" />
       <workItem from="1526435774401" duration="7571000" />
       <workItem from="1526444274702" duration="12329000" />
-      <workItem from="1526462496297" duration="742000" />
+      <workItem from="1526462496297" duration="1595000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="290334000" />
+    <option name="totallyTimeSpent" value="291187000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1366" height="709" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15413254" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -352,7 +350,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32792792" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42162162" sideWeight="0.48250186" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42162162" sideWeight="0.48250186" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -639,21 +637,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Layout.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Guest/InternshipList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="87" column="39" lean-forward="false" selection-start-line="87" selection-start-column="39" selection-end-line="87" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="336">
+          <caret line="27" column="60" lean-forward="true" selection-start-line="27" selection-start-column="60" selection-end-line="27" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Guest/InternshipList.js">
+    <entry file="file://$PROJECT_DIR$/src/Layout.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
-          <folding />
+        <state relative-caret-position="241">
+          <caret line="48" column="7" lean-forward="true" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

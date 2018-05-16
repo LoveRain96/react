@@ -9,11 +9,11 @@ import {
 } from 'reactstrap';
 import {Link} from "react-router-dom";
 
-import {Breadcrumb, Icon, Layout,Input, Menu} from 'antd';
+import {Icon, Layout,Input, Menu} from 'antd';
 import RouterGuest from "./router/RouterGuest";
 import RouterManagement from "./router/RouterManagement";
 
-const {Content, Sider} = Layout;
+const {Sider} = Layout;
 
 
 const Search = Input.Search;
