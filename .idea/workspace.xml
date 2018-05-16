@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a002201-02fc-40e3-9543-74ffd74c10f7" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/router/RouterManagement.js" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/HeaderNavbar.js" afterPath="" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/Guest/AreaList.js" />
       <change beforePath="$PROJECT_DIR$/src/Layout.js" afterPath="$PROJECT_DIR$/src/Layout.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/Guest/Guest.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/components/Guest/CompanyList.js" afterPath="$PROJECT_DIR$/src/components/Guest/CompanyList.js" />
+      <change beforePath="$PROJECT_DIR$/src/components/Guest/CourseList.js" afterPath="$PROJECT_DIR$/src/components/Guest/CourseList.js" />
       <change beforePath="$PROJECT_DIR$/src/components/Guest/InternshipList.js" afterPath="$PROJECT_DIR$/src/components/Guest/InternshipList.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/Guest/Router.js" afterPath="$PROJECT_DIR$/src/router/RouterGuest.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/company/ListCompany.js" afterPath="$PROJECT_DIR$/src/components/company/ListCompany.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/course/ListCourse.js" afterPath="$PROJECT_DIR$/src/components/course/ListCourse.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/course/reducers.js" afterPath="$PROJECT_DIR$/src/components/course/reducers.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/middlewares/internshipApi.js" afterPath="$PROJECT_DIR$/src/components/middlewares/internshipApi.js" />
-      <change beforePath="$PROJECT_DIR$/src/router/main.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/components/company/area/Area.js" afterPath="$PROJECT_DIR$/src/components/company/area/Area.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,7 +27,7 @@
       <file leaf-file-name="ListCourse.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/course/ListCourse.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="-225">
               <caret line="11" column="51" lean-forward="false" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -42,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ListCompany.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ListCompany.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/company/ListCompany.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-390">
-              <caret line="104" column="5" lean-forward="false" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
+            <state relative-caret-position="-582">
+              <caret line="99" column="46" lean-forward="false" selection-start-line="99" selection-start-column="46" selection-end-line="99" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -55,8 +49,32 @@
       <file leaf-file-name="Layout.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Layout.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-75">
-              <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+            <state relative-caret-position="285">
+              <caret line="31" column="38" lean-forward="true" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
+              <folding>
+                <element signature="e#154#192#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="249">
+              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InternshipList.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/Guest/InternshipList.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="26" lean-forward="true" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -135,14 +153,14 @@
         <option value="$PROJECT_DIR$/src/router/Router.js" />
         <option value="$PROJECT_DIR$/src/router/RouterGuest.js" />
         <option value="$PROJECT_DIR$/src/router/RouterManagement.js" />
-        <option value="$PROJECT_DIR$/src/components/company/ListCompany.js" />
         <option value="$PROJECT_DIR$/src/components/course/ListCourse.js" />
         <option value="$PROJECT_DIR$/src/components/course/reducers.js" />
-        <option value="$PROJECT_DIR$/src/Layout.js" />
         <option value="$PROJECT_DIR$/src/components/Guest/InternshipList.js" />
         <option value="$PROJECT_DIR$/src/components/company/action.js" />
         <option value="$PROJECT_DIR$/src/components/middlewares/internshipApi.js" />
         <option value="$PROJECT_DIR$/src/components/Guest/CompanyList.js" />
+        <option value="$PROJECT_DIR$/src/components/company/ListCompany.js" />
+        <option value="$PROJECT_DIR$/src/Layout.js" />
       </list>
     </option>
   </component>
@@ -338,17 +356,18 @@
       <workItem from="1526447076373" duration="21000" />
       <workItem from="1526451955335" duration="2683000" />
       <workItem from="1526455273980" duration="2969000" />
-      <workItem from="1526458330177" duration="1732000" />
+      <workItem from="1526458330177" duration="2227000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="287195000" />
+    <option name="totallyTimeSpent" value="287690000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="547" y="24" width="1368" height="717" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15413254" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1787044" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24827586" sideWeight="0.51749814" order="7" side_tool="true" content_ui="tabs" />
@@ -356,7 +375,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931036" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20689656" sideWeight="0.48250186" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3689655" sideWeight="0.48250186" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -504,13 +523,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/HeaderNavbar.js" />
     <entry file="file://$PROJECT_DIR$/src/logo.svg">
       <provider selected="true" editor-type-id="images">
@@ -543,7 +555,7 @@
         <state relative-caret-position="-634">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -607,13 +619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Guest/InternshipList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/middlewares/internshipApi.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -637,14 +642,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Layout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-75">
-          <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/middlewares/todoApi.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -663,16 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/course/ListCourse.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="11" column="51" lean-forward="false" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/company/action.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -681,10 +668,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/course/ListCourse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-225">
+          <caret line="11" column="51" lean-forward="false" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/company/ListCompany.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-390">
-          <caret line="104" column="5" lean-forward="false" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
+        <state relative-caret-position="-582">
+          <caret line="99" column="46" lean-forward="false" selection-start-line="99" selection-start-column="46" selection-end-line="99" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="31" column="38" lean-forward="true" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
+          <folding>
+            <element signature="e#154#192#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Guest/InternshipList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="26" lean-forward="true" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
           <folding />
         </state>
       </provider>

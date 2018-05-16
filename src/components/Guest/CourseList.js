@@ -1,5 +1,4 @@
 import React                from 'react';
-import Modal                from 'react-modal';
 import {Container, Table}   from "reactstrap";
 import {connect}            from  'react-redux';
 import {loadCourse}         from "../course/actions";
@@ -7,6 +6,8 @@ import {Link}               from 'react-router-dom';
 import Breadcrumb from "antd/es/breadcrumb/Breadcrumb";
 import {listInternshipById} from "../internship/action";
 import InternshipList from "./InternshipList";
+import { Collapse, CardBody, Card } from 'reactstrap';
+import {Layout} from "antd";
 
 const mapDispatchToProps = function (dispatch) {
 
@@ -29,12 +30,17 @@ const mapStateToProps = function (state) {
 };
 
 class CourseList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.toggle = this.renderInternship.bind(this);
+        this.state = { collapse: false };
+    }
     componentDidMount() {
         this.props.loadCourse();
-        Modal.setAppElement('body');
     }
-    renderInternship (e) {
+    renderInternship(e) {
         e.preventDefault();
+        this.setState({ collapse: !this.state.collapse });
         let id = e.currentTarget.getAttribute('data-course-id');
         this.props.listInternshipById(id);
     }
@@ -44,7 +50,7 @@ class CourseList extends React.Component {
                 <Breadcrumb style={{ margin: '16px 0' }}>
                     <Breadcrumb.Item>COURSES</Breadcrumb.Item>
                 </Breadcrumb>
-                <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                <div style={{ padding: 24, background: '#fff'}}>
                     <Container>
                         <Table striped>
                             <thead>
@@ -68,14 +74,18 @@ class CourseList extends React.Component {
                         </Table>
                     </Container>
                 </div>
-                <Breadcrumb style={{ margin: '16px 0' }}>
-                    <Breadcrumb.Item>INTERNSHIP</Breadcrumb.Item>
-                </Breadcrumb>
-                <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                    <Container>
-                        <InternshipList/>
-                    </Container>
-                </div>
+                <Collapse isOpen={this.state.collapse}>
+                    <Card>
+                        <Layout>
+                        <Breadcrumb style={{ margin: '16px 0' }}>
+                            <Breadcrumb.Item> INTERNSHIPS</Breadcrumb.Item>
+                        </Breadcrumb>
+                        <CardBody>
+                            <InternshipList/>
+                        </CardBody>
+                        </Layout>
+                    </Card>
+                </Collapse>
             </div>
         )
     }
