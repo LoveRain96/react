@@ -1,9 +1,10 @@
 import React                from 'react';
 import Modal                from 'react-modal';
-import {Container, Table}   from "reactstrap";
+import {Card, CardBody, Collapse, Container, Table} from "reactstrap";
 import {connect}            from  'react-redux';
 import {loadCompany} from "../company/action";
 import Breadcrumb from "antd/es/breadcrumb/Breadcrumb";
+import {Button} from "antd";
 
 const mapDispatchToProps = function (dispatch) {
     return {
@@ -20,11 +21,17 @@ const mapStateToProps = function (state) {
 };
 
 class CourseList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.toggle = this.toggle.bind(this);
+        this.state = { collapse: false };
+    }
     componentDidMount() {
         this.props.loadCompany();
-        Modal.setAppElement('body');
     }
-
+    toggle() {
+        this.setState({ collapse: !this.state.collapse });
+    }
     render() {
         return (
             <div>
@@ -43,6 +50,7 @@ class CourseList extends React.Component {
                                 <th> EMAIL MANAGER</th>
                                 <th> NAME MANAGER</th>
                                 <th> ADDRESS</th>
+                                <th> AREAS </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -54,11 +62,19 @@ class CourseList extends React.Component {
                                     <td>{company.emailManager}</td>
                                     <td>{company.nameManager}</td>
                                     <td>{company.address}</td>
+                                    <td><Button onClick={this.toggle}>AREA</Button></td>
                                 </tr>
                             )}
                             </tbody>
                         </Table>
                     </Container>
+                    <Collapse isOpen={this.state.collapse}>
+                        <Card>
+                            <CardBody>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
                 </div>
             </div>
         )

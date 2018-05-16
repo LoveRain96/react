@@ -9,13 +9,11 @@ import {
 } from 'reactstrap';
 import {Link} from "react-router-dom";
 import Router from "./components/Guest/Router";
-
 import {Breadcrumb, Icon, Input, Layout, Menu} from 'antd';
 
 const {Content, Sider} = Layout;
-
-
 const Search = Input.Search;
+
 export default class Example extends React.Component {
     constructor(props) {
         super(props);
@@ -82,14 +80,7 @@ export default class Example extends React.Component {
                         </Menu>
                     </Sider>
                     <Layout style={{ padding: '0 24px 24px' }}>
-                        <Breadcrumb style={{ margin: '16px 0' }}>
-                            <Breadcrumb.Item>Home</Breadcrumb.Item>
-                            <Breadcrumb.Item>List</Breadcrumb.Item>
-                            <Breadcrumb.Item>App</Breadcrumb.Item>
-                        </Breadcrumb>
-                        <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
-                            <Router/>
-                        </Content>
+                        <Router/>
                     </Layout>
                 </Layout>
             </div>

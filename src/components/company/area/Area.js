@@ -4,6 +4,8 @@ import Modal from "react-modal";
 import {Container} from 'reactstrap';
 import {Button} from 'antd'
 import {loadArea} from "./action";
+import FormAddCompany from "../FormAddCompany";
+import ListCompany from "../ListCompany";
 
 
 
@@ -32,7 +34,6 @@ class Company extends React.Component {
 
     componentWillMount() {
         this.props.loadArea();
-        Modal.setAppElement('body');
     }
     toggle() {
         this.setState({collapse: !this.state.collapse});
