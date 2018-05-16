@@ -1,8 +1,7 @@
 import React                from 'react';
 import Modal                from 'react-modal';
-import {Container, Table}   from "reactstrap";
+import {Table}   from "reactstrap";
 import {connect}            from  'react-redux';
-import Breadcrumb from "antd/es/breadcrumb/Breadcrumb";
 import {loadInternship} from "../internship/action";
 
 const mapDispatchToProps = function (dispatch) {
