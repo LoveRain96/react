@@ -45,7 +45,7 @@ export default class Example extends React.Component {
                                 />
                             </NavItem>
                             <NavItem>
-                                <NavLink><Link to={'/'}>NEW</Link></NavLink>
+                                <NavLink><Link to={'/new'}>NEW</Link></NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink><Link to={'/courses'}>COURSES</Link></NavLink>
@@ -63,9 +63,10 @@ export default class Example extends React.Component {
                     </Collapse>
                 </Navbar>
                 <Layout>
-                    <Sider width={200} style={{ background: '#fff' }}
-                           breakpoint ='lg'
-                           collapseWith='0'
+                    <Sider
+                           breakpoint="lg"
+                           collapsedWidth="0"
+                           onCollapse={(collapsed, type) => { console.log(collapsed, type); }}
                     >
                         <Menu
                             mode="inline"
