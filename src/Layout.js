@@ -74,6 +74,7 @@ export default class Example extends React.Component {
                         }}
                     >
                         <Menu
+                            theme="dark"
                             mode="inline"
                             defaultSelectedKeys={['1']}
                             defaultOpenKeys={['sub1']}
