@@ -1,61 +1,97 @@
-import  React from 'react'
-import {Input ,Layout, Menu, Icon } from 'antd'
-import Router from "./components/Guest/Router";
+import React from 'react';
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem, NavLink,
+} from 'reactstrap';
 import {Link} from "react-router-dom";
-const Search = Input.Search;
-//import HeaderNavbav from "./HeaderNavbar";
-const { Header, Content, Footer, Sider} = Layout;
+import Router from "./components/Guest/Router";
 
-export default class LayoutDemo extends React.Component {
+import {Breadcrumb, Icon, Input, Layout, Menu} from 'antd';
+
+const {Content, Sider} = Layout;
+
+
+const Search = Input.Search;
+export default class Example extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            isOpen: false
+        };
+    }
+    toggle() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
     render() {
         return (
-            <Layout>
-                <Sider
-                    breakpoint="lg"
-                    collapsedWidth="0"
-                >
-                    <div className="logo" />
-                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                        <Menu.Item key="1"><Icon type="appstore-o" /><span>MANAGEMENT</span></Menu.Item>
-                        <Menu.Item key="2"><Icon type="profile" /><span>COURSES</span></Menu.Item>
-                        <Menu.Item key="3"><Icon type="user" /><span>COMPANIES</span></Menu.Item>
-                        <Menu.Item key="4"><Icon type="user" /><span>LECTURER</span></Menu.Item>
-                        <Menu.Item key="5"><Icon type="user" /><span>INTERNS</span></Menu.Item>
-                    </Menu>
-                </Sider>
-                <Layout>
-                    <Header style={{ background: '#fff', padding: 0 }}>
-                        <div className="logo"/>
-                        <Menu
-                            theme="white"
-                            mode="horizontal"
-                            defaultSelectedKeys={['2']}
-                            style={{ lineHeight: '64px' }}
-                        >
-                            <Menu.Item key="1">
+            <div>
+                <Navbar color="light" light expand="md">
+                    <NavbarBrand href="/">HOME</NavbarBrand>
+                    <NavbarToggler onClick={this.toggle} />
+                    <Collapse isOpen={this.state.isOpen} navbar>
+                        <Nav className="ml-auto" navbar>
+                            <NavItem>
                                 <Search
-                                    placeholder="keyword search course, companies, interns"
+                                    placeholder="Search ..."
                                     onSearch={value => console.log(value)}
-                                    style={{ width: 500, marginLeft : 100 }}
                                 />
-                            </Menu.Item>
-                            <Menu.Item key="2"><Link to='/courses'>COURSES</Link></Menu.Item>
-                            <Menu.Item key="3"><Link to='/companies'>COMPANIES</Link></Menu.Item>
-                            <Menu.Item key="4">CONTACT</Menu.Item>
-                            <Menu.Item key="5">LOGIN</Menu.Item>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink><Link to={'/'}>NEW</Link></NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink><Link to={'/courses'}>COURSES</Link></NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink><Link to={'/companies'}>COMPANIES</Link></NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink><Link to={'/contact'}>CONTACT</Link></NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink><Link to={'/login'}>LOGIN</Link></NavLink>
+                            </NavItem>
+                        </Nav>
+                    </Collapse>
+                </Navbar>
+                <Layout>
+                    <Sider width={200} style={{ background: '#fff' }}
+                           breakpoint ='lg'
+                           collapseWith='0'
+                    >
+                        <Menu
+                            mode="inline"
+                            defaultSelectedKeys={['1']}
+                            defaultOpenKeys={['sub1']}
+                            style={{ height: '100%', borderRight: 0 }}
+                        >
+                            <Menu.Item key="1"><Icon type="appstore-o" /><span>MANAGEMENT</span></Menu.Item>
+                            <Menu.Item key="2"><Icon type="profile" /><span>COURSES</span></Menu.Item>
+                            <Menu.Item key="3"><Icon type="user" /><span>COMPANIES</span></Menu.Item>
+                            <Menu.Item key="4"><Icon type="user" /><span>LECTURER</span></Menu.Item>
+                            <Menu.Item key="5"><Icon type="user" /><span>INTERNS</span></Menu.Item>
                         </Menu>
-                    </Header>
-                    <Content style={{ margin: '24px 16px 0' }}>
-                        <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                    </Sider>
+                    <Layout style={{ padding: '0 24px 24px' }}>
+                        <Breadcrumb style={{ margin: '16px 0' }}>
+                            <Breadcrumb.Item>Home</Breadcrumb.Item>
+                            <Breadcrumb.Item>List</Breadcrumb.Item>
+                            <Breadcrumb.Item>App</Breadcrumb.Item>
+                        </Breadcrumb>
+                        <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
                             <Router/>
-                        </div>
-                    </Content>
-                    <Footer style={{ textAlign: 'center' }}>
-                        Copyright@
-                    </Footer>
+                        </Content>
+                    </Layout>
                 </Layout>
-            </Layout>
+            </div>
         );
     }
 }
-
