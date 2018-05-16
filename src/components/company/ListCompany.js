@@ -98,11 +98,14 @@ class ListCompany extends React.Component {
         this.setState.key_delete = index;
         if (window.confirm('Do you want to delete this : '.concat(nameCompany))) {
             this.props.deleteCompany(id,index)
-            /* axios.delete('/course/'.concat(courseId)).then(() => {
-                 store.dispatch(deleteCourse(courseId, index));
-                 this.closeModalDelete();*/
         }
     }
+
+    onArea(e) {
+        const id = e.currentTarget.getAttribute('data-company-id');
+        console.log(id);
+    }
+
     render() {
         return (
             <Container>
@@ -115,28 +118,31 @@ class ListCompany extends React.Component {
                         <th> EMAIL MANAGER </th>
                         <th> NAME MANAGER </th>
                         <th> ADDRESS </th>
-                        <th> AREA </th>
+                        <th> AREAS </th>
+                        <th> ACTION </th>
 
                     </tr>
                     </thead>
                     <tbody>
                     {this.props.companies.map((company, index) =>
                         <tr key={index}>
-                            <td>{index}</td>
-                            <td>{company.name}</td>
-                            <td>{company.phoneManager}</td>
-                            <td>{company.emailManager}</td>
-                            <td>{company.nameManager}</td>
-                            <td>{company.address}</td>
-                            <td>
-                                {company.area.name}
-                            </td>
-                            <td><Button  className={"btn-delete"} data-company-id={company.id} index={index} name={company.name}
-                                        onClick={this.onDeleted.bind(this)}> Delete </Button>
-                            </td>
-                            <td><Button companyid={company.id} onClick={() => this.openModal(company, index)}
-                                        style={{marginBottom: '1rem'}}>Edit</Button>
-                            </td>
+                            <th>{index}</th>
+                            <th>{company.name}</th>
+                            <th>{company.phoneManager}</th>
+                            <th>{company.emailManager}</th>
+                            <th>{company.nameManager}</th>
+                            <th>{company.address}</th>
+                            <th>
+                                <Button data-company-id={company.id}  onClick={this.onArea.bind(this)}>
+                                    AREA
+                                </Button>
+                            </th>
+                            <th>
+                                    <Button  className={"btn-delete"} data-company-id={company.id} index={index} name={company.name}
+                                             onClick={this.onDeleted.bind(this)}> Delete </Button>
+                                    <Button companyid={company.id} onClick={() => this.openModal(company, index)}
+                                            style={{marginBottom: '1rem'}}>Edit</Button>
+                            </th>
 
                                                         {/** MODAL **/}
                             <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal}>

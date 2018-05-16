@@ -1,10 +1,9 @@
-import { Tabs, Select } from 'antd';
+import { Tabs } from 'antd';
 import React from "react";
 import {connect}            from  'react-redux';
 import {loadInternship} from "../internship/action";
 
 const TabPane = Tabs.TabPane;
-const Option = Select.Option;
 
 const mapDispatchToProps = function (dispatch) {
     return {

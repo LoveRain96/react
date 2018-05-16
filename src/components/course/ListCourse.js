@@ -10,7 +10,6 @@ import {
 } from "reactstrap";
 import {Button} from "antd"
 import {deleteCourse, editCourse} from "./actions";
-import {Link} from "react-router-dom";
 
 const mapDispatchToProps = function (dispatch) {
     return {
@@ -141,7 +140,7 @@ class ListCourse extends React.Component {
                     <tbody>
                     {this.props.courses.map((course, index) =>
                         <tr key={index}>
-                            <td><Link to={"/course/".concat(course.id).concat("/internships")}>{course.name}</Link></td>
+                            <td>{course.name}</td>
                             <td>{course.startDate}</td>
                             <td>{course.endDate}</td>
                             {/**DELETE**/}

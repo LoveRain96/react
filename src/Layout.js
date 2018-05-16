@@ -1,21 +1,22 @@
 import React from 'react';
-import {
+/*import {
     Collapse,
     Navbar,
     NavbarToggler,
     NavbarBrand,
     Nav,
     NavItem, NavLink,
-} from 'reactstrap';
+} from 'reactstrap';*/
 import {Link} from "react-router-dom";
-import Router from "./components/Guest/Router";
 
-import {Breadcrumb, Icon, Input, Layout, Menu} from 'antd';
+import {Breadcrumb, Icon, Layout, Menu} from 'antd';
+import RouterGuest from "./router/RouterGuest";
+import RouterManagement from "./router/RouterManagement";
 
 const {Content, Sider} = Layout;
 
 
-const Search = Input.Search;
+//const Search = Input.Search;
 export default class Example extends React.Component {
     constructor(props) {
         super(props);
@@ -25,17 +26,19 @@ export default class Example extends React.Component {
             isOpen: false
         };
     }
+
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
         });
     }
+
     render() {
         return (
             <div>
-                <Navbar color="light" light expand="md">
+                {/*<Navbar color="light" light expand="md">
                     <NavbarBrand href="/">HOME</NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
+                    <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
@@ -61,34 +64,40 @@ export default class Example extends React.Component {
                             </NavItem>
                         </Nav>
                     </Collapse>
-                </Navbar>
+                </Navbar>*/}
                 <Layout>
                     <Sider
-                           breakpoint="lg"
-                           collapsedWidth="0"
-                           onCollapse={(collapsed, type) => { console.log(collapsed, type); }}
+                        breakpoint="lg"
+                        collapsedWidth="0"
+                        onCollapse={(collapsed, type) => {
+                            console.log(collapsed, type);
+                        }}
                     >
                         <Menu
                             mode="inline"
                             defaultSelectedKeys={['1']}
                             defaultOpenKeys={['sub1']}
-                            style={{ height: '100%', borderRight: 0 }}
+                            style={{height: '100%', borderRight: 0}}
                         >
-                            <Menu.Item key="1"><Icon type="appstore-o" /><span>MANAGEMENT</span></Menu.Item>
-                            <Menu.Item key="2"><Icon type="profile" /><span>COURSES</span></Menu.Item>
-                            <Menu.Item key="3"><Icon type="user" /><span>COMPANIES</span></Menu.Item>
-                            <Menu.Item key="4"><Icon type="user" /><span>LECTURER</span></Menu.Item>
-                            <Menu.Item key="5"><Icon type="user" /><span>INTERNS</span></Menu.Item>
+                            <Menu.Item key="1"><Icon type="appstore-o"/><span>MANAGEMENT</span></Menu.Item>
+                            <Menu.Item key="2"><Icon type="profile"/><span><Link to="/management/courses">COURSES</Link></span></Menu.Item>
+                            <Menu.Item key="3"><Icon type="user"/><span><Link
+                                to="/management/companies">COMPANIES</Link></span></Menu.Item>
+                            <Menu.Item key="4"><Icon type="user"/><span><Link
+                                to="/management/lecturers">LECTURERS</Link></span></Menu.Item>
+                            <Menu.Item key="5"><Icon type="user"/><span><Link
+                                to="/management/interns">INTERNS</Link></span></Menu.Item>
                         </Menu>
                     </Sider>
-                    <Layout style={{ padding: '0 24px 24px' }}>
-                        <Breadcrumb style={{ margin: '16px 0' }}>
+                    <Layout style={{padding: '0 24px 24px'}}>
+                        <Breadcrumb style={{margin: '16px 0'}}>
                             <Breadcrumb.Item>Home</Breadcrumb.Item>
                             <Breadcrumb.Item>List</Breadcrumb.Item>
                             <Breadcrumb.Item>App</Breadcrumb.Item>
                         </Breadcrumb>
-                        <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
-                            <Router/>
+                        <Content style={{background: '#fff', padding: 24, margin: 0, minHeight: 280}}>
+                            <RouterGuest/>
+                            <RouterManagement/>
                         </Content>
                     </Layout>
                 </Layout>

@@ -1,4 +1,4 @@
-import {LIST_INTERNSHIP_BY_ID, LOAD_INTERNSHIP} from "../internship/action";
+import {LIST_INTERNSHIP_BY_ID} from "../internship/action";
 import axios  from "axios"
 const internshipApi = store => next => action => {
     if(action.type === LIST_INTERNSHIP_BY_ID) {
