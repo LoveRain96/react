@@ -143,8 +143,6 @@ class ListCompany extends React.Component {
                                     <Button companyid={company.id} onClick={() => this.openModal(company, index)}
                                             style={{marginBottom: '1rem'}}>Edit</Button>
                             </th>
-
-                                                        {/** MODAL **/}
                             <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal}>
                                 <Label>Name</Label>
                                 <Input name="name" type="text" onChange={this.nameChange.bind(this)}

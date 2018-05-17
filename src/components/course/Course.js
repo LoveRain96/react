@@ -51,7 +51,7 @@ class Course extends React.Component {
         return (
             <Container>
                 <ListCourse courses={this.props.courses}/>
-                <div>
+                <div style={{marginTop : 10, marginLeft : 16}}>
                     <Button onClick={this.toggle} style={{marginBottom: '1rem'}}>ADD</Button>
                     <FormAddCourse collapse={this.state.collapse}/>
                 </div>

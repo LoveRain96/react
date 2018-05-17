@@ -8,8 +8,12 @@ import {
     Table
 
 } from "reactstrap";
-import {Button} from "antd"
+import {Breadcrumb, Button, Layout} from "antd"
 import {deleteCourse, editCourse} from "./actions";
+import {Link} from "react-router-dom";
+import {listInternshipById} from "../internship/action";
+import { Collapse, CardBody, Card } from 'reactstrap';
+import InternshipList from "./InternshipList";
 
 const mapDispatchToProps = function (dispatch) {
     return {
@@ -19,6 +23,9 @@ const mapDispatchToProps = function (dispatch) {
 
         deleteCourse(id,key_delete) {
             dispatch(deleteCourse(id, key_delete))
+        },
+        listInternshipById : function (id) {
+            dispatch(listInternshipById(id))
         }
 
     }
@@ -34,6 +41,7 @@ const mapStateToProps = function (state) {
 class ListCourse extends React.Component {
     constructor(props) {
         super(props);
+        this.toggle = this.renderInternship.bind(this);
         this.state = {
             courses: [],
             name: '',
@@ -41,11 +49,18 @@ class ListCourse extends React.Component {
             endDate: '',
             toggle: false,
             modalIsOpen: false,
-            idChecked: []
+            idChecked: [],
+            collapse: false
 
         };
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+    }
+    renderInternship(e) {
+        e.preventDefault();
+        this.setState({ collapse: !this.state.collapse });
+        let id = e.currentTarget.getAttribute('data-course-id');
+        this.props.listInternshipById(id);
     }
 
     componentWillMount() {
@@ -73,16 +88,6 @@ class ListCourse extends React.Component {
         e.preventDefault();
         this.props.editCourse(this.state.id, this.state.name, this.state.startDate, this.state.endDate, this.state.key_edit);
         this.closeModal();
-        /*let self = this;
-        axios.put('/course/'.concat(this.state.id), {
-            name: this.state.name,
-            startDate: this.state.startDate,
-            endDate: this.state.endDate,
-            id: this.state.id
-        }).then(res => {
-            store.dispatch(editCourse(res.data, self.state.key_edit));
-            self.closeModal();
-        });*/
     }
     nameChange(event) {
         this.setState({name: event.target.value})
@@ -103,28 +108,8 @@ class ListCourse extends React.Component {
         this.setState.key_delete = index;
         if (window.confirm('Do you want to delete this : '.concat(nameCourse))) {
             this.props.deleteCourse(id,index)
-           /* axios.delete('/course/'.concat(courseId)).then(() => {
-                store.dispatch(deleteCourse(courseId, index));
-                this.closeModalDelete();*/
         }
     }
-
-   /* checkedChange(e) {
-        store.dispatch(checkedCourse(e.currentTarget.getAttribute('id'), e.currentTarget.checked));
-    }
-
-    handleDelete() {
-        console.log(this.state.idChecked);
-        this.state.idChecked.map(id => {
-            if(id.checked === true) {
-                axios.delete('/course/'.concat(id.id)).then( () => {
-
-                        return store.dispatch(deleteCourseChecked(id))
-                    }
-                )}
-                return 'success'
-        });
-    }*/
 
     render() {
         return (
@@ -140,7 +125,7 @@ class ListCourse extends React.Component {
                     <tbody>
                     {this.props.courses.map((course, index) =>
                         <tr key={index}>
-                            <td>{course.name}</td>
+                            <td><Link onClick={this.renderInternship.bind(this)} data-course-id={course.id} to ={"/course/".concat(course.id).concat('/internships')}>{course.name}</Link></td>
                             <td>{course.startDate}</td>
                             <td>{course.endDate}</td>
                             {/**DELETE**/}
@@ -168,6 +153,18 @@ class ListCourse extends React.Component {
                     )}
                     </tbody>
                 </Table>
+                <Collapse isOpen={this.state.collapse}>
+                    <Card>
+                        <Layout>
+                            <Breadcrumb style={{ margin: '16px 0' }}>
+                                <Breadcrumb.Item> INTERNSHIPS</Breadcrumb.Item>
+                            </Breadcrumb>
+                            <CardBody>
+                                <InternshipList/>
+                            </CardBody>
+                        </Layout>
+                    </Card>
+                </Collapse>
             </Container>
         )
     }

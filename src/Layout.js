@@ -80,14 +80,11 @@ export default class Example extends React.Component {
                             defaultOpenKeys={['sub1']}
                             style={{height: '100%', borderRight: 0}}
                         >
-                            <Menu.Item key="1"><Icon type="appstore-o"/><span>MANAGEMENT</span></Menu.Item>
-                            <Menu.Item key="2"><Icon type="profile"/><span><Link to="/management/courses">COURSES</Link></span></Menu.Item>
-                            <Menu.Item key="3"><Icon type="user"/><span><Link
-                                to="/management/companies">COMPANIES</Link></span></Menu.Item>
-                            <Menu.Item key="4"><Icon type="user"/><span><Link
-                                to="/management/lecturers">LECTURERS</Link></span></Menu.Item>
-                            <Menu.Item key="5"><Icon type="user"/><span><Link
-                                to="/management/interns">INTERNS</Link></span></Menu.Item>
+                            <Menu.Item key="1"><Link to="/management/courses"><Icon type="appstore-o"/><span>MANAGEMENT</span></Link></Menu.Item>
+                            <Menu.Item key="2"><Link to="/management/courses"><Icon type="profile"/><span>COURSES</span></Link></Menu.Item>
+                            <Menu.Item key="3"><Link to="/management/companies"><Icon type="user"/><span>COMPANIES</span></Link></Menu.Item>
+                            <Menu.Item key="4"><Link to="/management/lecturers"><Icon type="user"/><span>LECTURERS</span></Link></Menu.Item>
+                            <Menu.Item key="5"><Link to="/management/interns"><Icon type="user"/><span>INTERNS</span></Link></Menu.Item>
                         </Menu>
                     </Sider>
                     <Layout style={{ padding: '0 24px 24px' }}>
