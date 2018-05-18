@@ -2,6 +2,7 @@ import {Button, Tabs} from 'antd';
 import React from "react";
 import {connect}            from  'react-redux';
 import {loadInternship} from "../internship/action";
+import FormAddInternship from "../internship/FormAddInternship";
 
 const TabPane = Tabs.TabPane;
 
@@ -19,13 +20,26 @@ const mapStateToProps = function (state) {
     }
 };
 class InternshipList extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            collapse: false
+        };
+    }
+
     componentDidMount() {
         this.props.loadInternship();
+    }
+    toggle() {
+        this.setState({collapse: !this.state.collapse});
     }
     render() {
         return (
             <div style={{ padding: 24, background: '#fff'}}>
-                <Button style={{marginBottom : 10}}>ADD</Button>
+                <Button style={{marginBottom : 10}} onClick={this.toggle}>ADD</Button>
+                <FormAddInternship collapse={this.state.collapse}/>
                 <Tabs tabPosition={'left'} type="card">
                     {this.props.internships.map((internship, index) =>
                         <TabPane tab={internship.company.name} key={index}>

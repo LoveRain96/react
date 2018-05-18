@@ -48,19 +48,19 @@ export default class Example extends React.Component {
                                 />
                             </NavItem>
                             <NavItem>
-                                <NavLink><Link to={'/new'}>NEW</Link></NavLink>
+                                <NavLink href={'/new'}>NEW</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink><Link to={'/courses'}>COURSES</Link></NavLink>
+                                <NavLink href={'/courses'}>COURSES</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink><Link to={'/companies'}>COMPANIES</Link></NavLink>
+                                <NavLink href={'/companies'}>COMPANIES</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink><Link to={'/contact'}>CONTACT</Link></NavLink>
+                                <NavLink href={'/contact'}>CONTACT</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink><Link to={'/login'}>LOGIN</Link></NavLink>
+                                <NavLink href={'/login'}>LOGIN</NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>

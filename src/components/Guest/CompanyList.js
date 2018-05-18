@@ -62,18 +62,19 @@ class CourseList extends React.Component {
                                     <td>{company.nameManager}</td>
                                     <td>{company.address}</td>
                                     <td><Button onClick={this.toggle}>AREA</Button></td>
+                                    <Collapse isOpen={this.state.collapse}>
+                                        <Card>
+                                            <CardBody>
+                                                <label>abc</label>
+                                            </CardBody>
+                                        </Card>
+                                    </Collapse>
                                 </tr>
                             )}
                             </tbody>
                         </Table>
                     </Container>
-                    <Collapse isOpen={this.state.collapse}>
-                        <Card>
-                            <CardBody>
 
-                            </CardBody>
-                        </Card>
-                    </Collapse>
                 </div>
             </div>
         )
