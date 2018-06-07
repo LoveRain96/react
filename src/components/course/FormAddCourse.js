@@ -1,5 +1,5 @@
 import React from 'react';
-import {Collapse,Card, CardBody, Form, Label, Input} from  'reactstrap'
+import {Collapse,Card, CardBody, Form, Label, Input, CardHeader} from  'reactstrap';
 import {addCourse} from "./actions";
 import { Button} from "antd";
 import {connect} from 'react-redux'
@@ -47,6 +47,7 @@ class FormAddCourse extends React.Component {
         return(
             <Collapse isOpen={this.props.collapse}>
                 <Card>
+                    <CardHeader>Create Course</CardHeader>
                     <CardBody>
                         <Form onSubmit={this.handleClick.bind(this)}>
                             <Label>Name</Label>
@@ -57,7 +58,7 @@ class FormAddCourse extends React.Component {
                             <Label>End_Date</Label>
                             <Input onChange={this.endDateChange.bind(this)} name="endDate" type={"date"}/>
                             <br/>
-                            <Button onClick={this.handleClick.bind(this)}>SAVE</Button>
+                            <Button type="primary" onClick={this.handleClick.bind(this)} >SAVE</Button>
                         </Form>
                     </CardBody>
                 </Card>

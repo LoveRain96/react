@@ -2,6 +2,7 @@ export const LOAD_COMPANY       = "loadCompany";
 export const ADD_COMPANY        = "addCompany";
 export const EDIT_COMPANY       = "editCompany";
 export const DELETE_COMPANY     = "deleteCompany";
+export const DETAIL_COMPANY     = "DETAIL_COMPANY";
 
 export function loadCompany() {
     return {
@@ -38,6 +39,14 @@ export function deleteCompany(id, key) {
         type : DELETE_COMPANY,
         id   : id,
         key_delete : key
+    }
+
+}
+export function detailCompany(id, key) {
+    return {
+        type : DETAIL_COMPANY,
+        id   : id,
+        key : key
     }
 
 }

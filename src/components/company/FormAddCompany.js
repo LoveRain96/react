@@ -36,6 +36,21 @@ class FormAddCompany extends React.Component {
         e.preventDefault();
         this.props.addCompany(this.state.name, this.state.phoneManager, this.state.emailManager,
             this.state.nameManager, this.state.address);
+        this.setState({
+            company : {
+                name : this.state.name,
+                phoneManager : this.state.phoneManager,
+                emailManager : this.state.emailManager,
+                address : this.state.address,
+                nameManager : this.state.nameManager
+            },
+            name : '',
+            phoneManager : '',
+            emailManager : '',
+            address : '',
+            nameManager : ''
+        });
+        this.props.onChangeCompany(this.state.company)
 
     }
 
@@ -66,16 +81,15 @@ class FormAddCompany extends React.Component {
                     <CardBody>
                         <Form onSubmit={this.handleClick.bind(this)}>
                             <Label>Name</Label>
-                            <Input name="name" type="text" onChange={this.nameChange.bind(this)}
-                                   placeholder="Enter name company"/>
+                            <Input value={this.state.name} onChange={this.nameChange.bind(this)}/>
                             <Label>Phone Manager</Label>
-                            <Input onChange={this.phoneManagerChange.bind(this)} placeholder="Enter phone manager" name="phoneManager" />
+                            <Input onChange={this.phoneManagerChange.bind(this)} value={this.state.phoneManager} />
                             <Label>Email Manager</Label>
-                            <Input onChange={this.emailManagerChange.bind(this)} placeholder="Enter email manager" name="emailManager" />
+                            <Input onChange={this.emailManagerChange.bind(this)} value={this.state.emailManager}/>
                             <Label>Name Manager</Label>
-                            <Input onChange={this.nameManagerChange.bind(this)} placeholder="Enter name manager" name="nameManager" />
+                            <Input onChange={this.nameManagerChange.bind(this)} value={this.state.nameManager}/>
                             <Label>Address</Label>
-                            <Input onChange={this.addressChange.bind(this)} placeholder="Enter address" name="address"/>
+                            <Input onChange={this.addressChange.bind(this)} value={this.state.address}/>
                             <br/>
                             <Button onClick={this.handleClick.bind(this)}>SAVE</Button>
                         </Form>

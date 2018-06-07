@@ -1,6 +1,6 @@
 import {
     ADD_COURSE, CHECKED_COURSE, DELETE_COURSE, DELETE_COURSE_CHECKED, EDIT_COURSE,
-    LOAD_COURSE
+    LOAD_COURSE, STATUS_COURSE
 } from "./actions";
 
 export function addCourseReducer(state = [], action) {
@@ -26,7 +26,6 @@ export function addCourseReducer(state = [], action) {
         const newCourse = [...state];
         newCourse[action.key_edit] = action.course;
         return [...newCourse];
-
     }
 
     if (action.type === CHECKED_COURSE) {
@@ -34,8 +33,12 @@ export function addCourseReducer(state = [], action) {
             id: action.id,
             checked : action.checked
         }];
-        console.log(newCourse);
         newCourse[action.id].checked = action.checked;
+        return [...newCourse];
+    }
+    if (action.type === STATUS_COURSE) {
+        const newCourse = [...state];
+        newCourse[action.index] = action.course;
         return [...newCourse];
     }
 

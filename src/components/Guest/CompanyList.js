@@ -1,9 +1,9 @@
-import React                from 'react';
-import {Card, CardBody, Collapse, Container, Table} from "reactstrap";
-import {connect}            from  'react-redux';
-import {loadCompany} from "../company/action";
-import Breadcrumb from "antd/es/breadcrumb/Breadcrumb";
-import {Button} from "antd";
+import React                                        from 'react';
+import {Container, Table} from "reactstrap";
+import {connect}                                    from  'react-redux';
+import {loadCompany}                                from "../company/action";
+import Breadcrumb                                   from "antd/es/breadcrumb/Breadcrumb";
+import { Link }                                     from "react-router-dom";
 
 const mapDispatchToProps = function (dispatch) {
     return {
@@ -49,26 +49,17 @@ class CourseList extends React.Component {
                                 <th> EMAIL MANAGER</th>
                                 <th> NAME MANAGER</th>
                                 <th> ADDRESS</th>
-                                <th> AREAS </th>
                             </tr>
                             </thead>
                             <tbody>
                             {this.props.companies.map((company, index) =>
                                 <tr key={index}>
                                     <td>{index}</td>
-                                    <td>{company.name}</td>
+                                    <td><Link to={{pathname : `/company/${company.id}`}}>{company.name}</Link></td>
                                     <td>{company.phoneManager}</td>
                                     <td>{company.emailManager}</td>
                                     <td>{company.nameManager}</td>
                                     <td>{company.address}</td>
-                                    <td><Button onClick={this.toggle}>AREA</Button></td>
-                                    <Collapse isOpen={this.state.collapse}>
-                                        <Card>
-                                            <CardBody>
-                                                <label>abc</label>
-                                            </CardBody>
-                                        </Card>
-                                    </Collapse>
                                 </tr>
                             )}
                             </tbody>

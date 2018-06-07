@@ -1,13 +1,13 @@
-import React                from 'react';
-import {Container, Table}   from "reactstrap";
-import {connect}            from  'react-redux';
-import {loadCourse}         from "../course/actions";
-import {Link}               from 'react-router-dom';
-import Breadcrumb from "antd/es/breadcrumb/Breadcrumb";
-import {listInternshipById} from "../internship/action";
-import InternshipList from "./InternshipList";
-import { Collapse, CardBody, Card } from 'reactstrap';
-import {Layout} from "antd";
+import React                            from 'react';
+import { CardHeader, Container, Table } from "reactstrap";
+import {connect}                        from  'react-redux';
+import {loadCourse}                     from "../course/actions";
+import {Link}                           from 'react-router-dom';
+import Breadcrumb                       from "antd/es/breadcrumb/Breadcrumb";
+import {listInternshipById}             from "../internship/action";
+import InternshipList                   from "./InternshipList";
+import { Collapse, CardBody, Card }     from 'reactstrap';
+import {Layout}                         from "antd";
 
 const mapDispatchToProps = function (dispatch) {
 
@@ -48,7 +48,7 @@ class CourseList extends React.Component {
         return (
             <div>
                 <Breadcrumb style={{ margin: '16px 0' }}>
-                    <Breadcrumb.Item>COURSES</Breadcrumb.Item>
+                    <Breadcrumb.Item><b>COURSES</b></Breadcrumb.Item>
                 </Breadcrumb>
                 <div style={{ padding: 24, background: '#fff'}}>
                     <Container>
@@ -77,9 +77,7 @@ class CourseList extends React.Component {
                 <Collapse isOpen={this.state.collapse}>
                     <Card>
                         <Layout>
-                        <Breadcrumb style={{ margin: '16px 0' }}>
-                            <Breadcrumb.Item> INTERNSHIPS</Breadcrumb.Item>
-                        </Breadcrumb>
+                            <CardHeader><b>LIST INTERNSHIP</b></CardHeader>
                         <CardBody>
                             <InternshipList/>
                         </CardBody>

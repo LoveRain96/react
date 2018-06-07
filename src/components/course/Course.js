@@ -5,7 +5,7 @@ import {
 } from "reactstrap";
 import ListCourse from "./ListCourse";
 import FormAddCourse from "./FormAddCourse";
-import {Button} from  "antd"
+import {Breadcrumb, Button} from "antd"
 import {connect} from  'react-redux';
 import {loadCourse} from "./actions";
 
@@ -29,6 +29,7 @@ class Course extends React.Component {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = {
+            course_id : '',
             name: '',
             startDate: '',
             endDate: '',
@@ -46,14 +47,24 @@ class Course extends React.Component {
     toggle() {
         this.setState({collapse: !this.state.collapse});
     }
+    onChange(value) {
+        this.setState({
+            course_id : value
+        })
+    }
 
     render() {
         return (
             <Container>
-                <ListCourse courses={this.props.courses}/>
-                <div style={{marginTop : 10, marginLeft : 16}}>
-                    <Button onClick={this.toggle} style={{marginBottom: '1rem'}}>ADD</Button>
-                    <FormAddCourse collapse={this.state.collapse}/>
+                <Breadcrumb style={{ margin: '16px 0' }}>
+                    <Breadcrumb.Item><b>COURSES</b></Breadcrumb.Item>
+                </Breadcrumb>
+                <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+                    <ListCourse courses={this.props.courses} />
+                    <div style={{marginTop : 10, marginLeft : 16}}>
+                        <Button onClick={this.toggle} style={{marginBottom: '1rem'}}>ADD</Button>
+                        <FormAddCourse collapse={this.state.collapse}/>
+                    </div>
                 </div>
             </Container>
         )

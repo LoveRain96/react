@@ -1,7 +1,8 @@
-import { Tabs } from 'antd';
-import React from "react";
-import {connect}            from  'react-redux';
-import {loadInternship} from "../internship/action";
+import { Tabs ,Button}         from 'antd';
+import React                   from "react";
+import {connect}               from  'react-redux';
+import {loadInternship}        from "../internship/action";
+import { registrationService } from "../../services";
 
 const TabPane = Tabs.TabPane;
 
@@ -14,7 +15,6 @@ const mapDispatchToProps = function (dispatch) {
 };
 
 const mapStateToProps = function (state) {
-    console.log(state.internshipReducer);
     return {
         internships : state.internshipReducer,
     }
@@ -23,10 +23,18 @@ class InternshipList extends React.Component {
     componentDidMount() {
         this.props.loadInternship();
     }
+    registration(id) {
+        let code = localStorage.getItem('code');
+        registrationService.registration(id, {code: code}).then(res => {
+            alert('registration success')
+        }).catch(err => {
+            alert(err)
+        })
+    }
     render() {
         return (
             <div style={{ padding: 24, background: '#fff'}}>
-                <Tabs tabPosition={'left'} type="card">
+                <Tabs tabPosition={'top'} type="card">
                     {this.props.internships.map((internship, index) =>
                         <TabPane tab={internship.company.name} key={index}>
                             <ul>
@@ -42,6 +50,7 @@ class InternshipList extends React.Component {
                                 <li> Lecturer Email : {internship.lecturer.email}</li>
                                 <li> Deadline : {internship.deadline}</li>
                             </ul>
+                            <Button type="primary" onClick={()=>this.registration(internship.id)}>Registration</Button>
                         </TabPane>
                     )}
                 </Tabs>

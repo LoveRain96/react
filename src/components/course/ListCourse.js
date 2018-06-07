@@ -1,24 +1,17 @@
 import React from 'react';
-import Modal from 'react-modal';
 import {connect} from 'react-redux'
-import {
-    Container,
-    Input,
-    Label,
-    Table
-
-} from "reactstrap";
-import {Breadcrumb, Button, Layout} from "antd"
-import {deleteCourse, editCourse} from "./actions";
+import {Container, Input, Label, Table, Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
+import {Button, Layout, Select} from "antd"
+import {ChangeStatusCourse, deleteCourse, editCourse} from "./actions";
 import {Link} from "react-router-dom";
 import {listInternshipById} from "../internship/action";
-import { Collapse, CardBody, Card } from 'reactstrap';
-import InternshipList from "./InternshipList";
+import { Collapse, CardBody, Card, CardHeader } from 'reactstrap';
+import InternshipList from "../internship/Internship";
 
 const mapDispatchToProps = function (dispatch) {
     return {
-        editCourse : function (id, name, startDate, endDate, key_edit) {
-            dispatch(editCourse(id, name, startDate, endDate, key_edit))
+        editCourse : function (id, name, startDate, endDate, status, key_edit) {
+            dispatch(editCourse(id, name, startDate, endDate, status, key_edit))
         },
 
         deleteCourse(id,key_delete) {
@@ -26,6 +19,9 @@ const mapDispatchToProps = function (dispatch) {
         },
         listInternshipById : function (id) {
             dispatch(listInternshipById(id))
+        },
+        ChangeStatusCourse(id, index) {
+            dispatch(ChangeStatusCourse(id, index))
         }
 
     }
@@ -45,12 +41,15 @@ class ListCourse extends React.Component {
         this.state = {
             courses: [],
             name: '',
+            status : '',
             startDate: '',
             endDate: '',
             toggle: false,
             modalIsOpen: false,
             idChecked: [],
-            collapse: false
+            collapse: false,
+            id : '',
+            course_id : ''
 
         };
         this.openModal = this.openModal.bind(this);
@@ -58,23 +57,19 @@ class ListCourse extends React.Component {
     }
     renderInternship(e) {
         e.preventDefault();
-        this.setState({ collapse: !this.state.collapse });
         let id = e.currentTarget.getAttribute('data-course-id');
+        this.setState({ collapse: !this.state.collapse, course_id: id});
         this.props.listInternshipById(id);
     }
-
-    componentWillMount() {
-        Modal.setAppElement('body');
-    }
-
-    openModal(course, key) {
+    openModal(course, index) {
         this.setState({
             modalIsOpen: true,
             name: course.name,
+            status : course.status,
             startDate: course.startDate,
             endDate: course.endDate,
             id: course.id,
-            key_edit: key
+            key_edit: index
         });
     }
 
@@ -86,7 +81,7 @@ class ListCourse extends React.Component {
 
     onEdited(e) {
         e.preventDefault();
-        this.props.editCourse(this.state.id, this.state.name, this.state.startDate, this.state.endDate, this.state.key_edit);
+        this.props.editCourse(this.state.id, this.state.name, this.state.startDate, this.state.endDate, this.state.status,this.state.key_edit);
         this.closeModal();
     }
     nameChange(event) {
@@ -110,6 +105,11 @@ class ListCourse extends React.Component {
             this.props.deleteCourse(id,index)
         }
     }
+    ChangeStatusCourse(e) {
+        let id = e.currentTarget.getAttribute('data-course-id');
+        let index = e.currentTarget.getAttribute('index');
+        this.props.ChangeStatusCourse(id, index);
+    }
 
     render() {
         return (
@@ -120,6 +120,9 @@ class ListCourse extends React.Component {
                         <th> NAME</th>
                         <th> START_DATE</th>
                         <th> END_DATE</th>
+                        <th width="1"> STATUS</th>
+                        <th width="1"> EDIT</th>
+                        <th width="1"> DELETE</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -128,26 +131,32 @@ class ListCourse extends React.Component {
                             <td><Link onClick={this.renderInternship.bind(this)} data-course-id={course.id} to ={"/course/".concat(course.id).concat('/internships')}>{course.name}</Link></td>
                             <td>{course.startDate}</td>
                             <td>{course.endDate}</td>
-                            {/**DELETE**/}
+                            <td><Button data-course-id={course.id} index={index} onClick={this.ChangeStatusCourse.bind(this)}
+                                            style={{marginBottom: '1rem'}} type={course.status==='CLOSE' ? 'danger' : 'primary'}>{course.status}</Button></td>
+                            <td><Button data-course-id={course.id}  onClick={() => this.openModal(course, index)}
+                                                style={{marginBottom: '1rem'}}>Edit</Button></td>
                             <td><Button data-course-id={course.id} index={index} name={course.name}
                                         onClick={this.onDeleted.bind(this)}> Delete </Button></td>
-
-                            {/** EDIT **/}
-                            <td><Button courseid={course.id} onClick={() => this.openModal(course, index)}
-                                            style={{marginBottom: '1rem'}}>Edit</Button></td>
-                            <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal}>
-                                <Label>Name</Label>
-                                <Input name="name" type="text" value={this.state.name}
-                                       onChange={this.nameChange.bind(this)}
-                                       placeholder="Enter name course"/>
-                                <Label>Start_Date</Label>
-                                <Input onChange={this.startDateChange.bind(this)} value={this.state.startDate}
-                                       name="startDate" type="date"/>
-                                <Label>End_Date</Label>
-                                <Input onChange={this.endDateChange.bind(this)} value={this.state.endDate}
-                                       name="endDate" type={"date"}/>
-                                <br/>
-                                <Button onClick={this.onEdited.bind(this)}>SAVE</Button>
+                            <Modal isOpen={this.state.modalIsOpen} onClosed={this.closeModal}>
+                                <ModalHeader>EDIT COURSE</ModalHeader>
+                                    <ModalBody>
+                                    <Label>Name</Label>
+                                    <Input name="name" type="text" value={this.state.name}
+                                           onChange={this.nameChange.bind(this)}
+                                           placeholder="Enter name course"/>
+                                    <Label>Start_Date</Label>
+                                    <Input onChange={this.startDateChange.bind(this)} value={this.state.startDate}
+                                           name="startDate" type="date"/>
+                                    <Label>End_Date</Label>
+                                    <Input onChange={this.endDateChange.bind(this)} value={this.state.endDate}
+                                           name="endDate" type={"date"}/>
+                                    <Label>Status</Label><br/>
+                                    <Select defaultValue={this.state.status} disabled style={{ width: '100%' }}>
+                                    </Select>
+                                    </ModalBody>
+                                    <ModalFooter>
+                                        <Button onClick={this.onEdited.bind(this)} type={'primary'}>SAVE</Button>
+                                    </ModalFooter>
                             </Modal>
                         </tr>
                     )}
@@ -156,11 +165,9 @@ class ListCourse extends React.Component {
                 <Collapse isOpen={this.state.collapse}>
                     <Card>
                         <Layout>
-                            <Breadcrumb style={{ margin: '16px 0' }}>
-                                <Breadcrumb.Item> INTERNSHIPS</Breadcrumb.Item>
-                            </Breadcrumb>
+                            <CardHeader><b>LIST INTERNSHIP</b></CardHeader>
                             <CardBody>
-                                <InternshipList/>
+                                <InternshipList course_id={this.state.course_id}/>
                             </CardBody>
                         </Layout>
                     </Card>

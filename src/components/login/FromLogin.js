@@ -1,6 +1,7 @@
-import React from 'react';
+import React                                                       from 'react';
 import {Form, Icon, Input, Button, Checkbox, Breadcrumb, Row, Col} from 'antd';
-import {Container} from "reactstrap";
+import {Container}                                                 from "reactstrap";
+import { loginService }                                            from "../../services";
 
 class Login extends React.Component {
     constructor(props) {
@@ -25,7 +26,31 @@ class Login extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                let data = {
+                    user_name: values.userName,
+                    password: values.password
+                };
+                loginService.login(data).then( user => {
+                    if(user.message === 'login false') {
+                        alert('user_name or password wrong!')
+                    }
+                    else {
+                        localStorage.setItem('user_name', user.data.user_name);
+                        localStorage.setItem('email', user.data.email);
+                        localStorage.setItem('avatar', user.data.avatar);
+                        localStorage.setItem('role', user.data.role);
+                        localStorage.setItem('code', user.data.code);
+                        localStorage.setItem('password', values.password);
+                        switch (user.data.role) {
+                            case 'admin' :
+                                return window.location.replace('/management/courses');
+                            case 'intern' :
+                                return window.location.replace('/courses');
+                            default :
+                                return window.location.replace('/management/courses');
+                        }
+                    }
+                });
             }
         });
     };

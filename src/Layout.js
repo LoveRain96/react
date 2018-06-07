@@ -1,17 +1,10 @@
-import React from 'react';
-import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem, NavLink,
-} from 'reactstrap';
-import {Link} from "react-router-dom";
-
-import {Icon, Layout,Input, Menu} from 'antd';
-import RouterGuest from "./router/RouterGuest";
-import RouterManagement from "./router/RouterManagement";
+import React                                                                   from 'react';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import {Link}                                                                  from "react-router-dom";
+import { Icon, Layout, Input, Menu, Dropdown }                                 from 'antd';
+import RouterGuest                                                             from "./router/RouterGuest";
+import RouterManagement                                                        from "./router/RouterManagement";
+import RouterLecturer                                                          from "./router/RouterLecturer";
 
 const {Sider} = Layout;
 
@@ -23,7 +16,7 @@ export default class Example extends React.Component {
 
         this.toggle = this.toggle.bind(this);
         this.state = {
-            isOpen: false
+            isOpen: false,
         };
     }
 
@@ -32,8 +25,33 @@ export default class Example extends React.Component {
             isOpen: !this.state.isOpen
         });
     }
+    isAuthentication = () =>{
+        return !!localStorage.getItem('user_name');
+    };
 
+    handleLogout = () => {
+        localStorage.removeItem("user_name");
+        localStorage.removeItem('avatar');
+        localStorage.removeItem('email');
+        localStorage.removeItem('role');
+        this.setState({
+            isOpenPopup: false,
+            modalOpen  : false
+        });
+
+        window.location.href = '/login';
+    };
     render() {
+        const menu = (
+            <Menu>
+                <Menu.Item>
+                    <Link to="/user"><span>Setting</span></Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <span onClick={this.handleLogout.bind(this)}>Logout</span>
+                </Menu.Item>
+            </Menu>
+        );
         return (
             <div>
                 <Navbar color="light" light expand="md">
@@ -44,7 +62,7 @@ export default class Example extends React.Component {
                             <NavItem>
                                 <Search
                                     placeholder="Search ..."
-                                    onSearch={value => console.log(value)}
+                                    onSearch={value => value}
                                 />
                             </NavItem>
                             <NavItem>
@@ -60,37 +78,74 @@ export default class Example extends React.Component {
                                 <NavLink href={'/contact'}>CONTACT</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href={'/login'}>LOGIN</NavLink>
+                                {this.isAuthentication() ?
+                                    <Dropdown overlay={menu}>
+                                        <NavLink href="/user">{localStorage.getItem('user_name')}<Icon type="caret-down" /></NavLink>
+                                    </Dropdown>
+                                    :
+                                    <NavLink href={'/login'}>LOGIN</NavLink>
+                                }
                             </NavItem>
                         </Nav>
                     </Collapse>
                 </Navbar>
-                <Layout>
-                    <Sider
-                        breakpoint="lg"
-                        collapsedWidth="0"
-                        onCollapse={(collapsed, type) => {
-                            console.log(collapsed, type);
-                        }}
-                    >
-                        <Menu
-                            theme="dark"
-                            mode="inline"
-                            defaultSelectedKeys={['1']}
-                            defaultOpenKeys={['sub1']}
-                            style={{height: '100%', borderRight: 0}}
+                {localStorage.getItem('role') === 'admin' ?
+                    <Layout>
+                        <Sider
+                            breakpoint="lg"
+                            collapsedWidth="0"
+                            onCollapse={(collapsed, type) => {
+
+                            }}
                         >
-                            <Menu.Item key="1"><Link to="/management/courses"><Icon type="appstore-o"/><span>MANAGEMENT</span></Link></Menu.Item>
-                            <Menu.Item key="2"><Link to="/management/courses"><Icon type="profile"/><span>COURSES</span></Link></Menu.Item>
-                            <Menu.Item key="3"><Link to="/management/companies"><Icon type="user"/><span>COMPANIES</span></Link></Menu.Item>
-                            <Menu.Item key="4"><Link to="/management/lecturers"><Icon type="user"/><span>LECTURERS</span></Link></Menu.Item>
-                            <Menu.Item key="5"><Link to="/management/interns"><Icon type="user"/><span>INTERNS</span></Link></Menu.Item>
-                        </Menu>
-                    </Sider>
-                    <Layout style={{ padding: '0 24px 24px' }}>
-                        <RouterGuest/>
-                        <RouterManagement/>
-                    </Layout>
+                            <Menu
+                                theme="dark"
+                                mode="inline"
+                                defaultSelectedKeys={['1']}
+                                defaultOpenKeys={['sub1']}
+                                style={{height: '100%', minHeight : '550px' , borderRight: 0}}
+                            >
+                                <Menu.Item key="1"><Link to="/management/courses"><Icon type="profile"/><span>COURSES</span></Link></Menu.Item>
+                                <Menu.Item key="2"><Link to="/management/companies"><Icon type="user"/><span>COMPANIES</span></Link></Menu.Item>
+                                <Menu.Item key="3"><Link to="/management/lecturers"><Icon type="user"/><span>LECTURERS</span></Link></Menu.Item>
+                                <Menu.Item key="4"><Link to="/management/interns"><Icon type="user"/><span>INTERNS</span></Link></Menu.Item>
+                            </Menu>
+                        </Sider>
+                        <Layout style={{ padding: '0 24px 24px' }}>
+                            <RouterManagement/>
+                            <RouterGuest/>
+                        </Layout>
+                    </Layout> : ''
+                }
+                {localStorage.getItem('role') === 'lecturer' ?
+                    <Layout>
+                        <Sider
+                            breakpoint="lg"
+                            collapsedWidth="0"
+                            onCollapse={(collapsed, type) => {
+
+                            }}
+                        >
+                            <Menu
+                                theme="dark"
+                                mode="inline"
+                                defaultSelectedKeys={['1']}
+                                defaultOpenKeys={['sub1']}
+                                style={{height: '100%', minHeight : '550px' , borderRight: 0}}
+                            >
+                                <Menu.Item key="1"><Link to="/management/companies"><Icon type="user"/><span>COMPANIES</span></Link></Menu.Item>
+                                <Menu.Item key="2"><Link to="/management/interns"><Icon type="user"/><span>INTERNS</span></Link></Menu.Item>
+                                <Menu.Item key="3"><Link to="/management/registration"><Icon type="profile"/><span>REGISTRATION</span></Link></Menu.Item>
+                            </Menu>
+                        </Sider>
+                        <Layout style={{ padding: '0 24px 24px' }}>
+                            <RouterLecturer/>
+                            <RouterGuest/>
+                        </Layout>
+                    </Layout> : ''
+                }
+                <Layout style={{ padding: '0 24px 24px' }}>
+                    <RouterGuest/>
                 </Layout>
             </div>
         );
