@@ -1,5 +1,5 @@
 import React                                                     from 'react';
-import { Breadcrumb, Button, Select }                            from "antd";
+import { Breadcrumb, Button, Select }                      from "antd";
 import { courseService, internshipService, registrationService } from "../../services";
 import { Input, Table }                                          from "reactstrap";
 const Option = Select.Option;
@@ -11,6 +11,7 @@ class Registration extends React.Component {
         registrations : [],
         confirmed : [],
         pending : [],
+        intern_delete : [],
         listConfirmed : '',
     };
     componentWillMount() {
@@ -35,17 +36,16 @@ class Registration extends React.Component {
         })
     };
     onChangeInternship(id) {
-        let lecturer_code = localStorage.getItem('code');
-        console.log(lecturer_code);
-        registrationService.getConfirmed(id,{lecturer_code: lecturer_code}).then(res => {
+        localStorage.setItem('internship_id',id);
+        registrationService.getConfirmed(id).then(res => {
             this.setState({
-                confirmed : res.data,
+                confirmed : res.data.filter(intern => intern.lecturer_code ===localStorage.getItem('code')),
                 internship_id : id
             })
         });
-        registrationService.getPending(id, {lecturer_code: lecturer_code}).then(res => {
+        registrationService.getPending(id).then(res => {
             this.setState({
-                pending : res.data,
+                pending : res.data.filter(intern => intern.lecturer_code ===localStorage.getItem('code')),
                 internship_id : id,
             })
         })
@@ -56,12 +56,27 @@ class Registration extends React.Component {
         })
     }
     sendConfirmed(){
-        this.state.listConfirmed.map(intern => {
-            return registrationService.confirmed(this.state.internship_id, {intern_code : intern.code})
+        this.state.listConfirmed.map(intern =>
+            this.setState({
+                confirmed : [...this.state.confirmed,{...intern}],
+                pending : this.state.pending.filter(rawIntern => !(rawIntern.code===intern.code))
+            }, () => registrationService.confirmed(intern.registration))
+        )
+    }
+    onChangeDelete(intern) {
+        this.setState({
+            intern_delete : [...this.state.intern_delete, {...intern}]
         })
     }
+    deleteConfirmed() {
+        this.state.intern_delete.map(intern =>
+            this.setState({
+                pending : this.state.pending.filter(rawIntern => !(rawIntern.code===intern.code))
+            }, () => registrationService.deleteRegistration(intern.registration))
+        )
+    }
     render() {
-
+        console.log(this.state.listConfirmed);
         return (
             <div>
                 <Breadcrumb style={{ margin: '16px 0' }}>
@@ -69,7 +84,7 @@ class Registration extends React.Component {
                 </Breadcrumb>
                 <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
                     <label>Course : </label>
-                    <Select style={{ width: '40%' }} onChange={(value) => this.onChangeCourse(value)}>
+                    <Select style={{ width: '35%' }} onChange={(value) => this.onChangeCourse(value)}>
                         {this.state.courses.map((course, index ) =>
                             <Option value={course.id} key={index}>{course.name}</Option>
                         )}
@@ -120,6 +135,7 @@ class Registration extends React.Component {
                             <th>Date of Birth</th>
                             <th>Address</th>
                             <th style={{textAlign: 'center'}}>Confirmed</th>
+                            <th style={{textAlign: 'center'}}>DELETE</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -135,6 +151,9 @@ class Registration extends React.Component {
                                     <td style={{textAlign: 'center'}}>
                                         <Input onChange={()=>this.onChangeConfirmed(intern)} type="checkbox" />
                                     </td>
+                                    <td style={{textAlign: 'center'}}>
+                                        <Input onChange={()=>this.onChangeDelete(intern)} type="checkbox" />
+                                    </td>
                                 </tr>
                             )
                         }
@@ -142,6 +161,9 @@ class Registration extends React.Component {
                             <td colSpan={6}/>
                             <td style={{textAlign: 'center'}}>
                                 <Button onClick={this.sendConfirmed.bind(this)}>Confirmed</Button>
+                            </td>
+                            <td style={{textAlign: 'center'}}>
+                                <Button onClick={this.deleteConfirmed.bind(this)}>DELETE</Button>
                             </td>
                         </tr>
                         </tbody>

@@ -31,7 +31,7 @@ class Login extends React.Component {
                     password: values.password
                 };
                 loginService.login(data).then( user => {
-                    if(user.message === 'login false') {
+                    if(user.data.message === 'login false') {
                         alert('user_name or password wrong!')
                     }
                     else {

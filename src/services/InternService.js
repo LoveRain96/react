@@ -19,6 +19,9 @@ class InternService {
     deleteIntern(id) {
         return this.axios.delete(`${this.config.domain}/intern/${id}`);
     }
+    importFile(data) {
+        return this.axios.post(`${this.config.domain}/import/interns`, data);
+    }
 }
 
 export default InternService;

@@ -1,10 +1,11 @@
-import React                      from 'react';
-import {connect}                  from 'react-redux';
-import {loadIntern}               from "./action";
-import {Container, Table} from "reactstrap";
-import {Breadcrumb , Button}               from "antd";
-import { internService }          from "../../services";
-import { Link }                   from "react-router-dom";
+import React                                from 'react';
+import {connect}                            from 'react-redux';
+import {loadIntern}                         from "./action";
+import {Container, Table}                   from "reactstrap";
+import { Breadcrumb, Button, Icon, Upload } from "antd";
+import { internService}   from "../../services";
+import { Link }                             from "react-router-dom";
+import { message }                          from "antd/lib/index";
 
 
 
@@ -42,7 +43,29 @@ class Intern extends React.Component {
             })
         })
     }
+    importFile() {
+
+    }
     render() {
+        const props = {
+            name: 'file',
+            action: '//jsonplaceholder.typicode.com/posts/',
+            headers: {
+                authorization: 'authorization-text',
+            },
+            onChange(info) {
+                if (info.file.status !== 'uploading') {
+                    this.setState({
+                        listImport : info.fileList
+                    })
+                }
+                if (info.file.status === 'done') {
+                    message.success(`${info.file.name} file uploaded successfully`);
+                } else if (info.file.status === 'error') {
+                    message.error(`${info.file.name} file upload failed.`);
+                }
+            },
+        };
         return (
             <Container>
                 <Breadcrumb style={{ margin: '16px 0' }}>
@@ -50,9 +73,22 @@ class Intern extends React.Component {
                 </Breadcrumb>
                 <div style={{ padding: 24, background: '#fff'}}>
                     <Container>
-                        <Link to={'/management/intern'}><Button>ADD</Button></Link>
-                        <Button>IMPORT</Button>
-                        <hr/>
+
+                        <div style={{textAlign : 'right'}}>
+                            <Link to={'/management/intern'}><Button>ADD</Button></Link><br/>
+                        </div>
+                        <label>Import file : </label>
+                        <Upload {...props}>
+                            <Button>
+                                <Icon type="upload" /> Click to Upload
+                            </Button>
+                        </Upload>
+                        <br/>
+                        <Button onClick={this.importFile.bind(this)}>Save</Button>
+                        <br/>
+
+                        <br/>
+                        <br/>
                         <Table striped>
                             <thead>
                             <tr>

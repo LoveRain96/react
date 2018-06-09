@@ -1,11 +1,11 @@
-import React                                from 'react';
-import {connect}                            from 'react-redux';
-import {loadLecturer}                       from "./action";
-import {Container, Table}                   from 'reactstrap';
-import { lecturerService }                  from "../../services";
-import { Breadcrumb, Button} from "antd";
-import { Link }                             from "react-router-dom";
+import React                      from 'react';
+import {connect}                  from 'react-redux';
+import {loadLecturer}             from "./action";
+import {Container, Table}         from 'reactstrap';
+import { Breadcrumb, Button}      from "antd";
+import { Link }                   from "react-router-dom";
 import { Upload, message,  Icon } from 'antd';
+import { lecturerService }        from "../../services";
 
 
 
@@ -24,7 +24,8 @@ const mapStateToProps = function (state) {
 
 class Lecturer extends React.Component {
     state = {
-        lecturers : []
+        lecturers : [],
+        listImport : []
     };
     componentWillMount() {
         lecturerService.getLecturers().then(res => {
@@ -42,13 +43,8 @@ class Lecturer extends React.Component {
         })
     }
 
-    importFile(e) {
-        console.log(e.target.value);
-        lecturerService.importFile({file : e.target.value}).then(() => {
-            alert('Import success');
-        }).catch(() => {
-            alert('Import fail')
-        })
+    importFile() {
+
     }
     render() {
         const props = {
@@ -59,13 +55,7 @@ class Lecturer extends React.Component {
             },
             onChange(info) {
                 if (info.file.status !== 'uploading') {
-                    lecturerService.importFile({file : info.file}).then(() => {
-                        alert('Import success');
-                    }).catch(() => {
-                        alert('Import fail')
-                    });
-
-                    // console.log(info.file, info.fileList);
+                    console.log(info.file, info.fileList);
                 }
                 if (info.file.status === 'done') {
                     message.success(`${info.file.name} file uploaded successfully`);
@@ -92,7 +82,10 @@ class Lecturer extends React.Component {
                                     <Icon type="upload" /> Click to Upload
                                 </Button>
                             </Upload>
-                            <hr/>
+                            <br/>
+                            <Button onClick={this.importFile.bind(this)}>Save</Button>
+                            <br/>
+                            <br/>
                             <Table striped>
                                 <thead>
                                 <tr>

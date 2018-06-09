@@ -1,7 +1,7 @@
 import React                                                                   from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import {Link}                                                                  from "react-router-dom";
-import { Icon, Layout, Input, Menu, Dropdown }                                 from 'antd';
+import { Icon, Layout, Menu, Dropdown }                                 from 'antd';
 import RouterGuest                                                             from "./router/RouterGuest";
 import RouterManagement                                                        from "./router/RouterManagement";
 import RouterLecturer                                                          from "./router/RouterLecturer";
@@ -9,7 +9,6 @@ import RouterLecturer                                                          f
 const {Sider} = Layout;
 
 
-const Search = Input.Search;
 export default class Example extends React.Component {
     constructor(props) {
         super(props);
@@ -60,12 +59,6 @@ export default class Example extends React.Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <Search
-                                    placeholder="Search ..."
-                                    onSearch={value => value}
-                                />
-                            </NavItem>
-                            <NavItem>
                                 <NavLink href={'/new'}>NEW</NavLink>
                             </NavItem>
                             <NavItem>
@@ -89,8 +82,8 @@ export default class Example extends React.Component {
                         </Nav>
                     </Collapse>
                 </Navbar>
+                <Layout>
                 {localStorage.getItem('role') === 'admin' ?
-                    <Layout>
                         <Sider
                             breakpoint="lg"
                             collapsedWidth="0"
@@ -109,16 +102,12 @@ export default class Example extends React.Component {
                                 <Menu.Item key="2"><Link to="/management/companies"><Icon type="user"/><span>COMPANIES</span></Link></Menu.Item>
                                 <Menu.Item key="3"><Link to="/management/lecturers"><Icon type="user"/><span>LECTURERS</span></Link></Menu.Item>
                                 <Menu.Item key="4"><Link to="/management/interns"><Icon type="user"/><span>INTERNS</span></Link></Menu.Item>
+                                <Menu.Item key="5"><Link to="/management/council"><Icon type="profile"/><span>COUNCIL</span></Link></Menu.Item>
+                                <Menu.Item key="6"><Link to="/management/areas"><Icon type="profile"/><span>AREAS</span></Link></Menu.Item>
                             </Menu>
-                        </Sider>
-                        <Layout style={{ padding: '0 24px 24px' }}>
-                            <RouterManagement/>
-                            <RouterGuest/>
-                        </Layout>
-                    </Layout> : ''
+                        </Sider> : ''
                 }
                 {localStorage.getItem('role') === 'lecturer' ?
-                    <Layout>
                         <Sider
                             breakpoint="lg"
                             collapsedWidth="0"
@@ -137,15 +126,17 @@ export default class Example extends React.Component {
                                 <Menu.Item key="2"><Link to="/management/interns"><Icon type="user"/><span>INTERNS</span></Link></Menu.Item>
                                 <Menu.Item key="3"><Link to="/management/registration"><Icon type="profile"/><span>REGISTRATION</span></Link></Menu.Item>
                             </Menu>
-                        </Sider>
-                        <Layout style={{ padding: '0 24px 24px' }}>
-                            <RouterLecturer/>
-                            <RouterGuest/>
-                        </Layout>
-                    </Layout> : ''
+                        </Sider> : ''
                 }
                 <Layout style={{ padding: '0 24px 24px' }}>
+                    {localStorage.getItem('role') === 'admin' ?
+                        <RouterManagement/> : ''
+                    }
+                    {localStorage.getItem('role') === 'lecturer' ?
+                        <RouterLecturer/> : ''
+                    }
                     <RouterGuest/>
+                </Layout>
                 </Layout>
             </div>
         );

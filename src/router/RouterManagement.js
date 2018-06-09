@@ -9,6 +9,8 @@ import DetailLecturer from "../components/lecturer/DetailLecturer";
 import InternEditor   from "../components/intern/InternEditor";
 import CreateLecturer from "../components/lecturer/CreateLecturer";
 import CreateIntern   from "../components/intern/CreateIntern";
+import Council        from "../components/council/Council";
+import Areas          from "../components/company/area/Areas";
 
 export default  class RouterManagement extends React.Component {
     render() {
@@ -24,6 +26,8 @@ export default  class RouterManagement extends React.Component {
                     <Route path={'/management/lecturer'} component={CreateLecturer}/>
                     <Route path={'/management/intern/:id'} component={InternEditor}/>
                     <Route path={'/management/intern'} component={CreateIntern}/>
+                    <Route path={'/management/council'} component={Council}/>
+                    <Route path={'/management/areas'} component={Areas}/>
                 </Switch>
             </main>
         )
